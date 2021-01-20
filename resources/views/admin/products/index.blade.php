@@ -20,7 +20,15 @@
                 <div class="card pd-20 pd-sm-40">
                     <h3 class="card-body-title">Ürünler</h3>
                     <a href="{{ route('products.create') }}" style="width:200px" class="btn btn-success">Yeni Ürün Ekle +</a>
-                    @if (session('protUpdated'))
+                    @if (session('success'))
+                            <div class="alert alert-success alert-dismissable fade show" role="alert">
+                            <strong>{{ session('success') }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                    @endif
+                    @if (session('proUpdated'))
                             <div class="alert alert-success alert-dismissable fade show" role="alert">
                             <strong>{{ session('protUpdated') }}</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="close">

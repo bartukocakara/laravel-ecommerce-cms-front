@@ -50,7 +50,9 @@
                                         <label for="">Kategori : </label>
                                         <select class="form-control" name="" id="">
                                             <option value="">---Kategori seçiniz---</option>
-                                            <option value=""></option>
+                                            @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -58,15 +60,19 @@
                                         <label for="">Alt kategori : </label>
                                         <select class="form-control" name="" id="">
                                             <option value="">---Alt Kategori seçiniz---</option>
-                                            <option value=""></option>
+                                            @foreach ($subCategories as $subCategory)
+                                            <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label for="">Boyut : </label>
-                                        <select class="form-control" name="" id="">
-                                            <option value="">---Alt Kategori seçiniz---</option>
-                                            <option value=""></option>
+                                        <label for="">Beden : </label>
+                                        <select class="form-control" name="size" id="">
+                                            <option value="">---Beden seçiniz---</option>
+                                            @foreach ($sizes as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -74,7 +80,9 @@
                                         <label for="">Renk : </label>
                                         <select class="form-control" name="" id="">
                                             <option value="">---Renk seçiniz---</option>
-                                            <option value=""></option>
+                                            @foreach ($colors as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -147,16 +155,6 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <label for="">Stok durumu : </label>
-                                        <input type="text" class="form-control" name="status"
-                                        @error('status')
-                                        is-invalid
-                                        @enderror placeholder="İsim yazınız" value="{{ $product->status }}"><br>
-                                        @error('status')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
                                 </div>
                             <button type="submit" class="btn btn-info">Güncelle</button>
                         </form>

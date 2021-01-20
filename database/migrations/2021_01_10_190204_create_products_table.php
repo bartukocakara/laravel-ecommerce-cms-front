@@ -27,7 +27,7 @@ class CreateProductsTable extends Migration
             $table->string('image_1');
             $table->string('image_2');
             $table->string('image_3');
-            $table->enum('stock_status', ['0', '1']);
+            $table->enum('stock_status', ['0', '1'])->default(1);
             $table->timestamps();
         });
     }

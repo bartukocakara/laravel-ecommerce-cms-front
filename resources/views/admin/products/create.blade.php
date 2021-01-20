@@ -21,132 +21,107 @@
       <div class="card pd-20 pd-sm-40">
 
         <div class="form-layout">
-            <form action="{{ route('products.store') }}" method="post" role="form">
+            <form action="{{ route('products.store') }}" method="post" role="form" enctype="multipart/form-data">
                 @csrf
                     <div class="row">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="col-md-6">
                             <label for="">Ad : </label>
                             <input type="text" class="form-control" name="name"
-                            @error('name')
-                            is-invalid
-                            @enderror placeholder="İsim yazınız" value=""><br>
-                            @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                             placeholder="İsim yazınız" value=""><br>
                         </div>
 
                         <div class="col-md-6">
                             <label for="">Kategori : </label>
-                            <select class="form-control" name="" id="">
+                            <select class="form-control" name="category_id" value="{{ old('category_id') }}" id="">
                                 <option value="">---Kategori seçiniz---</option>
-                                <option value=""></option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="col-md-6">
                             <label for="">Alt kategori : </label>
-                            <select class="form-control" name="" id="">
+                            <select class="form-control" name="sub_category_id" value="{{ old('sub_category_id') }}" id="">
                                 <option value="">---Alt Kategori seçiniz---</option>
-                                <option value=""></option>
+                                @foreach ($subCategories as $subCategory)
+                                <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="">Boyut : </label>
-                            <select class="form-control" name="" id="">
-                                <option value="">---Alt Kategori seçiniz---</option>
-                                <option value=""></option>
+                            <label for="">Beden : </label>
+                            <select class="form-control" name="sub_category_id" value="{{ old('sub_category_id') }}" id="">
+                                <option value="">---Beden seçiniz---</option>
+                                @foreach ($sizes as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="col-md-6">
                             <label for="">Renk : </label>
-                            <select class="form-control" name="" id="">
+                            <select class="form-control" name="color" id="">
                                 <option value="">---Renk seçiniz---</option>
-                                <option value=""></option>
+                                @foreach ($colors as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="col-md-6">
                             <label for="">Ücret : </label>
                             <input type="number" class="form-control" name="price"
-                            @error('price')
-                            is-invalid
-                            @enderror placeholder="Ücret yazınız" value=""><br>
-                            @error('price')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            placeholder="Ücret yazınız" value="{{ old('price') }}"><br>
                         </div>
 
                         <div class="col-md-6">
                             <label for="">Açıklama : </label>
                             <input type="text" class="form-control" name="description"
-                            @error('description')
-                            is-invalid
-                            @enderror placeholder="Açıklama yazınz" value=""><br>
-                            @error('description')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                             placeholder="Açıklama yazınz" value="{{ old('description') }}"><br>
+
                         </div>
 
                         <div class="col-md-6">
                             <label for="">Miktarı : </label>
                             <input type="number" class="form-control" name="quantity"
-                            @error('quantity')
-                            is-invalid
-                            @enderror placeholder="Miktar yazınız" value=""><br>
-                            @error('quantity')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                           placeholder="Miktar yazınız" value="{{ old('quantity') }}"><br>
+
                         </div>
 
                         <div class="col-md-6">
                             <label for="">Görsel-1 : </label>
                             <input type="file" class="form-control" name="image_1"
-                            @error('image_1')
-                            is-invalid
-                            @enderror placeholder="İsim yazınız" value=""><br>
-                            @error('image_1')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                             placeholder="İsim yazınız" value=""><br>
+
                         </div>
 
                         <div class="col-md-6">
                             <label for="">Görsel-2 : </label>
-                            <img src="{{ asset('storage/product-images}" width="200" alt="">
                             <input type="file" class="form-control" name="image_2"
-                            @error('image_2')
-                            is-invalid
-                            @enderror placeholder="İsim yazınız" value=""><br>
-                            @error('image_2')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                             placeholder="İsim yazınız" value=""><br>
+
                         </div>
 
                         <div class="col-md-6">
                             <label for="">Görsel-3 : </label>
-                            <img src="{{ asset('storage/product-images}" width="200" alt="">
                             <input type="file" class="form-control" name="image_3"
-                            @error('image_3')
-                            is-invalid
-                            @enderror placeholder="İsim yazınız" value=""><br>
-                            @error('image_3')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            placeholder="İsim yazınız" value=""><br>
+
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="">Stok durumu : </label>
-                            <input type="text" class="form-control" name="status"
-                            @error('status')
-                            is-invalid
-                            @enderror placeholder="İsim yazınız" value=""><br>
-                            @error('status')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
                     </div>
-                <button type="submit" class="btn btn-info">Güncelle</button>
+                <button type="submit" class="btn btn-info">Oluştur</button>
             </form>
         </div><!-- form-layout -->
       </div><!-- card -->

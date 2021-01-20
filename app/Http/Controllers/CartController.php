@@ -24,7 +24,6 @@ class CartController extends Controller
     {
         if (Auth::check()){
             $cart = Cart::firstWhere('customer_id', Auth::user()->id);
-            // dd(Auth::user()->id);
             if ($cart){
                 $product = [
                     'product_id' => $request->products['product_id'],
@@ -114,9 +113,14 @@ class CartController extends Controller
         for ($i=0; $i < count($products); $i++) {
             if($data['product_id'] == $products[$i]['product_id'])
             {
-                $products[$i]['quantity'] += $i;
+                if($data['quantity']  == 20) {
+                    break;
+                }
+                else{
+                $products[$i]['quantity'] += 1;
                 $data['quantity'] = $products[$i]['quantity'];
                 $cart->total_price += $products[$i]['price'];
+                }
             }
         }
         $data['total_price'] = $cart->total_price;
@@ -145,9 +149,15 @@ class CartController extends Controller
         for ($i=0; $i < count($products); $i++) {
             if($data['product_id'] == $products[$i]['product_id'])
             {
-                $products[$i]['quantity'] -= $i;
-                $data['quantity'] = $products[$i]['quantity'];
-                $cart->total_price -= $products[$i]['price'];
+                if($data['quantity']  == 0) {
+                    break;
+                }
+                else{
+                    $products[$i]['quantity'] -= 1;
+                    $data['quantity'] = $products[$i]['quantity'];
+                    $cart->total_price -= $products[$i]['price'];
+                }
+
             }
         }
         $data['total_price'] = $cart->total_price;

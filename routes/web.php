@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::namespace('Admin')->middleware(['admin', 'auth'])->group(function () {
+    Route::get('/genel-tablolar', 'HomeController@home')->name('admin.home');
+    Route::resource('categories', 'CategoryController')->except(['show', 'create']);
+    Route::resource('sub-categories', 'SubCategoryController')->except(['show', 'create']);
+    Route::resource('products', 'ProductController');
+    Route::resource('orders', 'OrderController')->except(['show']);
+    Route::resource('customers', 'CustomerController')->except(['show']);
+    Route::resource('messages', 'MessageController')->except(['edit', 'update']);
+});
 
 //Session işlemleri
 Route::get('/giriş-yap', 'FrontAuth\FrontLoginController@login')->name('front.login');
@@ -56,12 +65,4 @@ Route::get('/ürün-detay/{slug}', 'HomeController@productDetail')->name('front.
 
 Auth::routes();
                //      ---ADMIN---    //
-Route::namespace('Admin')->group(function () {
-    Route::get('/genel-tablolar', 'HomeController@home')->name('admin.home');
-    Route::resource('/categories', 'CategoryController')->except(['show', 'create']);
-    Route::resource('/sub-categories', 'SubCategoryController')->except(['show', 'create']);
-    Route::resource('/products', 'ProductController')->except(['show']);
-    Route::resource('/orders', 'OrderController')->except(['show']);
-    Route::resource('/customers', 'CustomerController')->except(['show']);
-    Route::resource('/messages', 'MessageController')->except(['edit', 'update']);
-});
+

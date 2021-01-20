@@ -20,7 +20,7 @@
                         <a href="" class="nav-link" data-toggle="dropdown">@if ($category->id == 1) Kadın @else Erkek @endif</a>
                         <ul class="dropdown-menu animated">
                             @foreach ($subCategories as $subCategory)
-                                <li><a href="{{ route('front.category', ['category' => $category->id, 'subCategory' => $subCategory->name]) }}">{{ $subCategory->name }}</a></li>
+                                <li><a href="{{ route('front.category', ['category' => $category->name, 'subCategory' => $subCategory->name]) }}">{{ $subCategory->name }}</a></li>
                             @endforeach
                         </ul>
                     </li>
