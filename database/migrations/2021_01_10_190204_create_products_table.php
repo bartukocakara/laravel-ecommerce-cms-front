@@ -25,8 +25,8 @@ class CreateProductsTable extends Migration
             $table->string('product_slug');
             $table->integer('quantity');
             $table->string('image_1');
-            $table->string('image_2');
-            $table->string('image_3');
+            $table->string('image_2')->nullable(true);
+            $table->string('image_3')->nullable(true);
             $table->enum('stock_status', ['0', '1'])->default(1);
             $table->timestamps();
         });

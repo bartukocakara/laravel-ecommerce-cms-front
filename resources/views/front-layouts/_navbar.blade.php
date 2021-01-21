@@ -25,7 +25,7 @@
                         </ul>
                     </li>
                     @endforeach
-                    @if (Auth::check())
+                    @if (session('customer'))
                     <li class="dropdown">
                         <a href="" class="nav-link" data-toggle="dropdown">İşlemler</a>
                         <ul class="dropdown-menu animated">
@@ -41,12 +41,12 @@
             <!-- /.navbar-collapse -->
 
             <!-- Start Atribute Navigation -->
-            @if (isset($cart) && Auth::check())
+            @if (isset($sessionCart) && Session::get('customer'))
             <div class="attr-nav">
                 <ul>
                     <li class="side-menu">
                         <a href="#"> <i class="fa fa-shopping-bag"></i>
-                        <span class="badge">{{ $cart->total_quantity }}</span>
+                        <span class="badge">{{ $sessionCart->total_quantity }}</span>
                         </a>
                     </li>
                 </ul>
@@ -55,10 +55,10 @@
             @else
             <div class="attr-nav">
                 <ul>
-                    <li class="side-menu">
-                        <a href="#"> <i class="fa fa-shopping-bag"></i>
+                    <li class="side-menu" >
+                        <button > <i class="fa fa-shopping-bag"></i>
                         <span class="badge">0</span>
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -66,28 +66,28 @@
 
         </div>
         <!-- Start Side Menu -->
-        @if (Auth::check() && isset($cart->products))
+        @if (Session::get('customer') && isset($sessionCart))
         <div class="side">
             <a href="#" class="close-side"><i class="fa fa-times"></i></a>
             <li class="cart-box">
                 <ul class="cart-list">
-                    @foreach (json_decode($cart->products) as $product)
+                    @foreach (json_decode($sessionCart->products) as $product)
                     <li>
                         <a href="#" class="photo"><img src="{{ asset('storage/product-images/'.$product->image_1) }}" class="cart-thumb" alt=""></a>
                         <h6><a href="#">{{ $product->name }} </a></h6>
-                        <input type="number" class="input-quantity" name="quantity" max="99" min="1" class="controlNumber" style="width: 35px;" id="input-quantity-{{ $product->quantity }}" value="{{ $product->quantity }}">
+                        <input type="number" class="input-quantity" name="quantity" max="99" min="1" class="controlNumber" style="width: 35px;" id="input-quantity-{{ $product->quantity }}" value="{{ $product->quantity }}" disabled>
                         <h4 class="d-inline"> x {{ $product->price }} ₺ = {{ $product->price*$product->quantity }}</h4>
                     </li>
                     @endforeach
                 </ul>
                 <div class="btn-group">
                     <a href="{{ route('front.cart') }}" class="btn btn-sm ml-3 btn-info my-auto">Sepete git</a>
-                    <form action="{{ route('front.empty-cart', $cart->id) }}" method="post">
+                    <form action="{{ route('front.empty-cart', $sessionCart->id) }}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-sm btn-danger ml-5 my-auto" onclick="confirm('Sepetinizi boşaltmak istiyor musunuz istiyor musunuz ?')">Sepeti boşalt</button>
                     </form>
                 </div>
-                <h3 class="card-footer">Toplam ücret:{{ $cart->total_price }}
+                <h3 class="card-footer">Toplam ücret:{{ $sessionCart->total_price }}
             </li>
 
         </div>

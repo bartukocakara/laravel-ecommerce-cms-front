@@ -4,9 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
-class AdminMiddleware
+class SessionMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->status == 1)
+        if(session('customer'))
         {
+            view()->share(Session::all());
             return $next($request);
         }
         else

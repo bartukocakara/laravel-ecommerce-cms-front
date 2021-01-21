@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     public function cart()
     {
-        $cart = Cart::where('customer_id', Auth::id())->first();
+        $cart = Cart::where('customer_id', session('customer')['id'])->first();
         if(isset($cart))
         {
             $products = json_decode($cart->products);
@@ -22,8 +20,8 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        if (Auth::check()){
-            $cart = Cart::firstWhere('customer_id', Auth::user()->id);
+        if (session('customer')){
+            $cart = Cart::firstWhere('customer_id', session('customer')['id']);
             if ($cart){
                 $product = [
                     'product_id' => $request->products['product_id'],
@@ -83,7 +81,7 @@ class CartController extends Controller
                 ];
                 array_push($cartcontent, $cartitem);
                 Cart::create([
-                    'customer_id' => Auth::user()->id,
+                    'customer_id' => session('customer')['id'],
                     'products' => json_encode($cartcontent),
                     'total_price' => $request->products['price'] * $request->products['quantity'],
                     'total_quantity' => 1,
@@ -99,7 +97,7 @@ class CartController extends Controller
     public function increaseQuantity(Request $request)
     {
         // Miktar arttırım yapacağımız sepeti belirliyoruz
-        $cart = Cart::where('customer_id', Auth::user()->id)->first();
+        $cart = Cart::where('customer_id', session('customer')['id'])->first();
 
         //Sepetteki ürünleri array yapıyoruz
         $products = json_decode($cart->products, true);
@@ -137,7 +135,7 @@ class CartController extends Controller
     public function decreaseQuantity(Request $request)
     {
         // Miktar arttırım yapacağımız sepeti belirliyoruz
-        $cart = Cart::where('customer_id', Auth::user()->id)->first();
+        $cart = Cart::where('customer_id', session('customer')['id'])->first();
         //Sepetteki ürünleri array yapıyoruz
         $products = json_decode($cart->products, true);
         //Ajaxtan gelen verileri derliyoruz
@@ -172,7 +170,7 @@ class CartController extends Controller
     public function removeFromCart($id)
     {
         //Sepetteki aynı ürünlerin hepsini sepetten çıkar
-        $data = Cart::where(['customer_id' => Auth::user()->id])->get();
+        $data = Cart::where(['customer_id' => session('customer')['id']])->get();
         return response()->json($data, 200);
 
     }

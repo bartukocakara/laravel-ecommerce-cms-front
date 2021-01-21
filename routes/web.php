@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::namespace('Admin')->middleware(['admin', 'auth'])->group(function () {
+
+Auth::routes();
+               //      ---ADMIN---    //
+Route::namespace('Admin')->middleware(['admin'])->group(function () {
     Route::get('/genel-tablolar', 'HomeController@home')->name('admin.home');
     Route::resource('categories', 'CategoryController')->except(['show', 'create']);
     Route::resource('sub-categories', 'SubCategoryController')->except(['show', 'create']);
@@ -30,39 +33,40 @@ Route::get('/kayıt-ol', 'FrontAuth\FrontRegisterController@register')->name('fr
 Route::post('/kayıt-ol', 'FrontAuth\FrontRegisterController@registerPost')->name('front.register-submit');
 Route::get('/çıkış-yap', 'FrontAuth\FrontLoginController@logout')->name('front.logout');
 
-//Ana sayfa
 Route::get('/', 'HomeController@index')->name('front.home');
 
-//Kategori araması
-Route::get('/{category}/{subCategory}', 'HomeController@categoryPage')->name('front.category');
+Route::middleware('session')->group(function () {
+        //Ana sayfa
 
-//Sepet işlemleri
-Route::get('/sepetim', 'CartController@cart')->name('front.cart');
-Route::post('/sepete-ekle', 'CartController@addToCart')->name('front.add-to-cart');
-Route::post('/increase-qty', 'CartController@increaseQuantity')->name('front.increase-quantity');
-Route::post('/decrease-qty', 'CartController@decreaseQuantity')->name('front.decrease-quantity');
-Route::post('/sepetten-çıkar/{id}', 'CartController@removeFromCart')->name('front.remove-from-cart');
-Route::post('/sepeti-boşalt/{id}', 'CartController@emptyCart')->name('front.empty-cart');
 
-// Ödeme
-Route::get('/ödeme-sayfası', 'PaymentController@checkout')->name('front.checkout');
+        //Kategori araması
+        Route::get('/{category}/{subCategory}', 'HomeController@categoryPage')->name('front.category');
 
-// Hakkımızda
-Route::get('/hakkımızda', 'HomeController@about')->name('front.about');
+        //Sepet işlemleri
 
-//İletişim
-Route::get('/iletişim', 'HomeController@contact')->name('front.contact');
+        Route::get('/sepetim', 'CartController@cart')->name('front.cart');
+        Route::post('/sepete-ekle', 'CartController@addToCart')->name('front.add-to-cart');
+        Route::post('/increase-qty', 'CartController@increaseQuantity')->name('front.increase-quantity');
+        Route::post('/decrease-qty', 'CartController@decreaseQuantity')->name('front.decrease-quantity');
+        Route::post('/sepetten-çıkar/{id}', 'CartController@removeFromCart')->name('front.remove-from-cart');
+        Route::post('/sepeti-boşalt/{id}', 'CartController@emptyCart')->name('front.empty-cart');
 
-//Kullanıcı profili
-Route::get('/profilim', 'HomeController@profile')->name('front.profile');
+        // Ödeme
+        Route::get('/ödeme-sayfası', 'PaymentController@checkout')->name('front.checkout');
 
-//Siparişlerim
-Route::get('/siparişlerim', 'HomeController@orders')->name('front.orders');
+        // Hakkımızda
+        Route::get('/hakkımızda', 'HomeController@about')->name('front.about');
 
-//Ürünler
-Route::get('/ürünler', 'HomeController@products')->name('front.products');
-Route::get('/ürün-detay/{slug}', 'HomeController@productDetail')->name('front.product-detail');
+        //İletişim
+        Route::get('/iletişim', 'HomeController@contact')->name('front.contact');
 
-Auth::routes();
-               //      ---ADMIN---    //
+        //Kullanıcı profili
+        Route::get('/profilim', 'HomeController@profile')->name('front.profile');
 
+        //Siparişlerim
+        Route::get('/siparişlerim', 'HomeController@orders')->name('front.orders');
+
+        //Ürünler
+        Route::get('/ürünler', 'HomeController@products')->name('front.products');
+        Route::get('/ürün-detay/{slug}', 'HomeController@productDetail')->name('front.product-detail');
+});

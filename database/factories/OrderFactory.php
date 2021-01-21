@@ -30,17 +30,7 @@ class OrderFactory extends Factory
                 'city' => $this->faker->city,
                 'district' => $this->faker->city,
                 'zip' => $this->faker->postcode,
-                'products' => "[
-                                {
-                                    'product_id' : '".$this->faker->numberBetween(1, 30)."'
-                                },
-                                {
-                                    'product_id' : '".$this->faker->numberBetween(1, 30)."'
-                                },
-                                {
-                                    'product_id' : '".$this->faker->numberBetween(1, 30)."'
-                                    },
-                                ]",
+                'products' => "",
                 'discount' => $this->faker->randomElement([5, 10, 20]),
                 'tax' => $this->faker->numberBetween(10, 30),
                 'sub_total' => $this->faker->numberBetween(20, 90),
@@ -49,7 +39,7 @@ class OrderFactory extends Factory
                 'shipping_cost' => $this->faker->randomElement([3, 7, 12]),
                 'note' => $this->faker->paragraph(2, true),
                 'shipping_company' => $this->faker->randomElement(['Yurtiçi', 'Aras', 'Mng', 'Ptt']),
-                'delivery_time' => $this->faker->randomElement(['1-gün', '2-4-gün', '3-7-gün']),
+                'delivery_time' => $this->faker->randomElement(['1_DAY', '2-4_DAY', '3-7_DAY']),
                 'payment_type' => $this->faker->randomElement(['HAVALE', 'EFT', 'CREDIT_CARD']),
                 'status' => $this->faker->randomElement(['PENDING', 'COMPLETED', 'DECLINED', 'ON_DELIVERY']),
                 'card_number' => $this->faker->creditCardNumber,

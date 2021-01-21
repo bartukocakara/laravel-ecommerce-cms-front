@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable;
+
 
 class Customer extends Model
 {
+    use Authenticatable;
     use HasFactory;
 
-    protected $fillable = ['cart_id', 'name', 'surname', 'email', 'password', 'phone', 'address', 'second_address', 'token'];
+    protected $fillable = ['name', 'surname', 'email', 'password', 'phone', 'address', 'second_address'];
 
     protected $table = "customers";
 

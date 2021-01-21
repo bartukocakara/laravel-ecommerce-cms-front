@@ -182,7 +182,7 @@
                                 </div>
                                 <hr> </div>
                         </div>
-                        <div class="col-12 d-flex shopping-box"> <button type="submit" class="ml-auto btn btn-success">Siparişi Tamamla</button> </div>
+                        <div class="col-12 d-flex shopping-box"> <button type="submit" class="ml-auto btn btn-success go-checkout">Siparişi Tamamla</button> </div>
                     </div>
                 </div>
             </div>

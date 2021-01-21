@@ -1555,6 +1555,7 @@ pre code {
 
 @media (max-width: 991px) {
   .table-responsive {
+      border-radius: 20px;
     display: block;
     width: 100%;
     overflow-x: auto;

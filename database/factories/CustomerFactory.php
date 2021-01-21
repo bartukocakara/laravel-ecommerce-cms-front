@@ -23,7 +23,6 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-                'cart_id' => $this->faker->unique(true)->numberBetween(0, 50),
                 'name' => $this->faker->name,
                 'surname' => $this->faker->company,
                 'email' => $this->faker->freeEmail,

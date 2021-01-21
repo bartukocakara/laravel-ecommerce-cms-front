@@ -10,7 +10,7 @@ class PaymentController extends Controller
 {
     public function checkout()
     {
-        $checkout = Cart::where('customer_id' ,Auth::user()->id)->first();
+        $checkout = Cart::where('customer_id', session('customer')['id'])->first();
         $products = [];
         if($checkout)
         {

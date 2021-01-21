@@ -11,6 +11,10 @@ class FrontRegisterController extends Controller
 {
     public function register()
     {
+        if(session('customer'))
+        {
+            return redirect()->back();
+        }
         return view('front-auth.register');
     }
 
@@ -19,16 +23,23 @@ class FrontRegisterController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|unique:customers',
+            'password' => 'required|min:6',
+            'password-2' => 'required_with:password|same:password|min:6',
         ]);
-        $request->all();
         Customer::insert([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->password),
             'remember_token' => $request->input('_token')
         ]);
-        $this->createSession($request);
-        return redirect()->back()->with('createCustomer', 'Üyeliğiniz başarıyla oluşturuldu');
+        $id = Customer::where('name', $request->name)->first()->id;
+        session()->put('customer', [
+            'token' => $request->input('_token'),
+            'name' => $request->input('name'),
+            'id' => $id,
+        ]);
+        // dd(session('customer'));
+        return redirect('')->with('createCustomer', 'Üyeliğiniz başarıyla oluşturuldu');
 
     }
 }

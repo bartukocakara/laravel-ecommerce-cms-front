@@ -861,6 +861,7 @@
      color: #ffffff;
      padding: 2px 10px;
      font-weight: 300;
+     border-radius: 20px;
 }
  .type-lb .new{
      background: #010101;
@@ -1786,6 +1787,9 @@
  .cart-box-main{
      padding: 70px 0px;
 }
+.table-main {
+    border-radius: 20px;
+}
  .table-main table thead{
      background: #d33b33;
      color: #ffffff;
@@ -1833,6 +1837,14 @@
      border-radius: 0px;
      font-size: 16px;
      padding: 0px 20px;
+}
+
+.go-checkout {
+    border-radius: 20px;
+    background-color: green;
+}
+.go-checkout:hover {
+    transform: scale(1.1);
 }
  .coupon-box .input-group .input-group-append .btn-theme:hover {
      background: #d33b33;
@@ -2315,6 +2327,7 @@
      text-align: center;
 }
  .featured-products-box .owl-nav button.owl-prev{
+     border-radius: 5px;
      background: #010101;
      color: #ffffff;
      width: 38px;
@@ -2322,14 +2335,13 @@
      text-align: center;
 }
  .featured-products-box .owl-nav button.owl-next{
-     background: #010101;
+    border-radius: 5px;
+    margin-left: 5px;
+    background: #010101;
      color: #ffffff;
      width: 38px;
      height: 38px;
      text-align: center;
-}
- .featured-products-box .owl-nav button.owl-prev:hover, .featured-products-box .owl-nav button.owl-next:hover{
-     background: #d33b33;
 }
  .table-responsive .table td, .table-responsive .table th {
      vertical-align: middle;
