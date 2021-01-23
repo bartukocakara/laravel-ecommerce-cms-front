@@ -2,7 +2,7 @@ $("#contactForm").validator().on("submit", function (event) {
     if (event.isDefaultPrevented()) {
         // handle the invalid form...
         formError();
-        submitMSG(false, "Formun tamamınını doldurduğunuzdan emin misiniz?");
+        submitMSG(false, "Formun tamamını doldurduğunuzdan emin misiniz?");
     } else {
         // everything looks good!
         event.preventDefault();

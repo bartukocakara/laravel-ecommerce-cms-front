@@ -31,7 +31,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         view()->composer('*', function ($view)
         {   $products = Product::all();
             $categories = Category::all();
@@ -43,7 +42,5 @@ class AppServiceProvider extends ServiceProvider
             }
             $view->with(['categories' => $categories, 'subCategories' => $subCategories, 'products' => $products]);
         });
-
-
     }
 }

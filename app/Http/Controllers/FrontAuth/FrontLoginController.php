@@ -46,6 +46,6 @@ class FrontLoginController extends Controller
     public function logout()
     {
         $this->deleteSession();
-        return redirect()->back();
+        return redirect('');
     }
 }

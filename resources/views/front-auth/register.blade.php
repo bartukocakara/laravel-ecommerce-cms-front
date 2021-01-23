@@ -45,7 +45,7 @@
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="submit-button text-center">
-                                    <button class="btn hvr-hover" id="submit" type="submit">Oluştur</button>
+                                    <button class="btn go-checkout" id="submit" type="submit">Kaydet</button>
                                     <div id="msgSubmit" class="h3 text-center hidden"></div>
                                     <div class="clearfix"></div>
                                 </div>

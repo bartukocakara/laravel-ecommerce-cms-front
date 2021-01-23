@@ -1,7 +1,7 @@
     <!-- Start Cart  -->
     <div class="cart-box-main">
         <div class="container">
-            @if (isset($cart) && isset($products))
+            @if (isset($sessionCart))
             <div class="row">
                 <div class="col-sm-6 col-lg-6 mb-3">
                     <div class="checkout-address">
@@ -162,7 +162,7 @@
                                     <h3>Sepetiniz</h3>
                                 </div>
                                 <div class="rounded p-2 bg-light">
-                                    @foreach ($products as $product)
+                                    @foreach (json_decode($sessionCart->products, true) as $product)
                                     <div class="media mb-2 border-bottom">
                                         <div class="media-body"> <a href="detail.html">{{ $product['name'] }}</a>
                                             <div class="small text-muted">Ücret: {{ $product['price'] }} <span class="mx-2">|</span> Miktar: {{ $product['quantity'] }} <span class="mx-2">|</span>Alt Toplam : {{ $product['price']*$product['quantity'] }}</div>
