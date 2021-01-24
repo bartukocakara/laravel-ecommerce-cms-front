@@ -19,12 +19,12 @@ class SessionMiddleware
     {
         if(session('customer'))
         {
-            view()->share(Session::all());
+            view()->share(Session::get('customer'));
             return $next($request);
         }
         else
         {
-            return redirect()->back();
+            return redirect()->back()->with("notLoggedIn", "Sepetinize ürün eklemek için giriş yapınız");
         }
     }
 }

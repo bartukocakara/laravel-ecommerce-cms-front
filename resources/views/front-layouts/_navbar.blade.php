@@ -20,7 +20,7 @@
                         <a href="" class="nav-link" data-toggle="dropdown">@if ($category->id == 1) Kadın @else Erkek @endif</a>
                         <ul class="dropdown-menu animated">
                             @foreach ($subCategories as $subCategory)
-                                <li><a href="{{ route('front.category', ['category' => $category->name, 'subCategory' => $subCategory->name]) }}">{{ $subCategory->name }}</a></li>
+                                <li><a href="{{ route('front.category', ['category' => Str::lower($category->name), 'subCategory' => Str::lower($subCategory->name)]) }}">{{ $subCategory->name }}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -76,18 +76,18 @@
                         <a href="#" class="photo"><img src="{{ asset('storage/product-images/'.$product->image_1) }}" class="cart-thumb" alt=""></a>
                         <h6><a href="#">{{ $product->name }} </a></h6>
                         <input type="number" class="input-quantity" name="quantity" max="99" min="1" class="controlNumber" style="width: 35px;" id="input-quantity-{{ $product->quantity }}" value="{{ $product->quantity }}" disabled>
-                        <h4 class="d-inline"> x {{ $product->price }} ₺ = {{ $product->price*$product->quantity }}</h4>
+                        <h4 class="d-inline"> * {{ $product->price }} = {{ $product->price*$product->quantity }} ₺</h4>
                     </li>
                     @endforeach
                 </ul>
-                <div class="btn-group">
-                    <a href="{{ route('front.cart') }}" class="btn btn-sm ml-3 btn-info my-auto">Sepete git</a>
+                <div class="btn-group ml-4">
+                    <a href="{{ route('front.cart') }}" class="btn btn-success go-checkout">Sepete git</a>
                     <form action="{{ route('front.empty-cart', $sessionCart->id) }}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-sm btn-danger ml-5 my-auto" onclick="confirm('Sepetinizi boşaltmak istiyor musunuz istiyor musunuz ?')">Sepeti boşalt</button>
+                        @csrf
+                        <button type="submit" class="btn btn-danger clear-cart" onclick="confirm('Sepetinizi boşaltmak istiyor musunuz istiyor musunuz ?')">Sepeti boşalt</button>
                     </form>
                 </div>
-                <h3 class="card-footer">Toplam ücret:{{ $sessionCart->total_price }}
+                <h3 class="card-footer">Toplam ücret:{{ $sessionCart->total_price }} ₺ </h3>
             </li>
 
         </div>

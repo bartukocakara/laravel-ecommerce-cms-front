@@ -6,12 +6,13 @@
                 <div class="col-lg-12">
                     <div class="title-all text-center">
                         <h1>
-
+                            {{ $cat1->name ." / ". $cat2->name }}
                         </h1>
                     </div>
                 </div>
             </div>
             <div class="row special-list">
+                @if (count($products) > 0)
                 @foreach ($products as $product)
                 <div class="col-lg-3 col-md-6 special-grid">
                     <div class="products-single fix">
@@ -26,7 +27,7 @@
                             </div>
                             @endif
 
-                            <img src="{{ asset('storage/product-images/'.$product->image_1) }}" class="img-fluid" alt="Image">
+                            <img src="{{ asset('storage/product-images/'.$product->image_1) }}" alt="Image" width="200" height="300">
                         </div>
                         <div class="why-text">
                             <form action="{{ route('front.add-to-cart') }}" method="post">
@@ -41,12 +42,17 @@
                                 <button type="submit" class="btn @if($product->stock_status == 1) btn-success @else btn-danger @endif cart " @if($product->stock_status == 0) disabled title="Stoğu tükenmiş" @endif >Sepete Ekle</button>
                                 <a class="btn" href="{{ route('front.product-detail', $product->product_slug) }}" data-toggle="tooltip" data-placement="right" title="göster">Ürün detayı</i></a>
                             </form>
+                            <br>
                             <h4>{{ $product->name ." - " .$product->size }}</h4>
                             <h5>{{ $product->price }} ₺</h5>
                         </div>
                     </div>
                 </div>
                 @endforeach
+                @else
+                    <h1>Bu kategorideki ürünlerimizin stokları tükenmiştir.</h1>
+                @endif
+
             </div>
         </div>
     </div>

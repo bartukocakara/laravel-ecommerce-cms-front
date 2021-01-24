@@ -21,7 +21,7 @@
                                                 <p class="sale">Stokta değil</p>
                                             </div>
                                         @endif
-                                        <img src="{{ asset('storage/product-images/'.$product->image_1) }}" height="300" alt="Image">
+                                        <img src="{{ asset('storage/product-images/'.$product->image_1) }}" height="310" alt="Image">
                                     </div>
                                     <div class="why-text">
                                         <form action="{{ route('front.add-to-cart') }}" method="post">

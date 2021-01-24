@@ -23,8 +23,9 @@ class HomeController extends Controller
 
     public function categoryPage($category, $subCategory)
     {
-        $cat1 =  Category::where('id', $category)->first();
-        $cat2 = SubCategory::where('id', $subCategory)->first();
+        $cat1 =  Category::where('name', $category)->first();
+        $cat2 = SubCategory::where('name', $subCategory)->first();
+
         if(isset($cat1) && isset($cat2)){
             $products = Product::where(['category_id' => $cat1->id, 'sub_category_id' => $cat2->id])->get();
             return view('front.category', compact('products', 'cat1', 'cat2'));
@@ -66,7 +67,8 @@ class HomeController extends Controller
 
     public function productDetail($slug)
     {
-        $product = Product::where('product_slug', $slug);
-        return view('front.product-detail', compact('product'));
+        $product = Product::where('product_slug', $slug)->first();
+        $sizes = config("enums.sizes");
+        return view('front.product-detail', compact('product', 'sizes'));
     }
 }

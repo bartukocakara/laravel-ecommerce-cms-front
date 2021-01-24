@@ -36,11 +36,14 @@ Route::post('/kayıt-ol', 'FrontAuth\FrontRegisterController@registerPost')->nam
 Route::get('/', 'HomeController@index')->name('front.home');
 Route::get('/çıkış-yap', 'FrontAuth\FrontLoginController@logout')->name('front.logout');
 
+//Ürünler
+Route::get('/ürünler', 'HomeController@products')->name('front.products');
+Route::get('/ürün-detay/{slug}', 'HomeController@productDetail')->name('front.product-detail');
+
+//Kategori araması
+Route::get('/{category}/{subCategory}', 'HomeController@categoryPage')->name('front.category');
+
 Route::middleware('session')->group(function () {
-
-
-        //Kategori araması
-        Route::get('/{category}/{subCategory}', 'HomeController@categoryPage')->name('front.category');
 
         //Sepet işlemleri
         Route::get('/sepetim', 'CartController@cart')->name('front.cart');
@@ -62,9 +65,6 @@ Route::middleware('session')->group(function () {
         //Siparişlerim
         Route::get('/siparişlerim', 'HomeController@orders')->name('front.orders');
 
-        //Ürünler
-        Route::get('/ürünler', 'HomeController@products')->name('front.products');
-        Route::get('/ürün-detay/{slug}', 'HomeController@productDetail')->name('front.product-detail');
 });
 
 //İletişim

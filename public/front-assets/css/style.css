@@ -1846,6 +1846,12 @@
 .go-checkout:hover {
     transform: scale(1.1);
 }
+.clear-cart {
+    border-radius: 0px 20px 20px 0;
+}
+.clear-cart:hover {
+    transform: scale(1.1);
+}
  .coupon-box .input-group .input-group-append .btn-theme:hover {
      background: #d33b33;
 }
@@ -2229,7 +2235,7 @@
  .carousel-indicators{
      position: relative;
      bottom: 0;
-     background: #010101;
+     background: #5f5f5f04;
 }
  .carousel-indicators li{
      width: 30%;

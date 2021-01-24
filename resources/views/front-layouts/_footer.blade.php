@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
-                            <h4>About ThewayShop</h4>
+                            <h4>Monatasarım Hakkında</h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 </p>
                             <ul>
@@ -13,20 +13,14 @@
                                 <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-link">
-                            <h4>Information</h4>
+                            <h4>Bilgilendirme</h4>
                             <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Customer Service</a></li>
-                                <li><a href="#">Our Sitemap</a></li>
-                                <li><a href="#">Terms &amp; Conditions</a></li>
+                                <li><a href="#">Hakkımızda</a></li>
                                 <li><a href="#">Privacy Policy</a></li>
                                 <li><a href="#">Delivery Information</a></li>
                             </ul>
@@ -56,7 +50,7 @@
 
     <!-- Start copyright  -->
     <div class="footer-copyright">
-        <p class="footer-company">All Rights Reserved. &copy; 2021 <a target="_blank" href="http://bionde.com.tr">Bionde Yazılım</a>
+        <p class="footer-company">All Rights Reserved. &copy; 2021 <a target="_blank" href="https://bionde.com.tr">Bionde Yazılım</a>
     </div>
     <!-- End copyright  -->
 

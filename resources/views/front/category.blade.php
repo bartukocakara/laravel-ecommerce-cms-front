@@ -1,7 +1,7 @@
 
 @extends('front-layouts.app')
 
-@section('title', 'Hakkımızda')
+@section('title', 'Kategori')
 
 @section('navbar')
     @parent

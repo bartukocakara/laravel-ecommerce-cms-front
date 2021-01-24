@@ -31,6 +31,13 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                     </div>
+                    @elseif(session("remove-from-cart"))
+                    <div class="alert alert-warning alert-dismissable fade show" role="alert">
+                        <strong>{{ session('remove-from-cart') }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
                     @endif
 
                 </div>

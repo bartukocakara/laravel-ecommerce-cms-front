@@ -49,16 +49,16 @@
                                         {{ $product['price'] * $product['quantity'] }} ₺
                                     </td>
                                     <td class="remove-pr">
-                                        <a href="{{ route('front.remove-from-cart', $product['product_id']) }}">
-									        <i class="fas fa-times"></i>
-								        </a>
+                                        <form action="{{ route('front.remove-from-cart', $product['product_id']) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                                        </a>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
                                 @else
                                 <h1>Sepetiniz Boş.</h1>
-                                @php
-                                @endphp
                                 @endif
                             </tbody>
                         </table>
