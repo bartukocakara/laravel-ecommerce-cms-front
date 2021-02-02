@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="text-black font-weight-bold text-center">Sepetiniz</h1>
+                    <h1 class="text-black font-weight-bold text-center">Sepetiniz : </h1>
                     <div class="table-main table-responsive">
                         <table class="table">
                             @if(isset($sessionCart->products))
