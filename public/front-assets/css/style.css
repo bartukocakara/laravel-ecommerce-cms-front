@@ -2,8 +2,7 @@
     IMPORT FONTS
 -------------------------------------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,600i,700,700i,800,800i');
-@import url('https://fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap');
 
 
 /*
@@ -26,7 +25,7 @@
 @import url(bootsnav.css);
 @import url(owl.carousel.min.css);
 @import url(jquery-ui.css);
-@import url(nice-select.css);
+/* @import url(nice-select.css); */
 @import url(baguetteBox.min.css);
 
 /*------------------------------------------------------------------
@@ -35,7 +34,7 @@
  body {
      color: #666666;
      font-size: 15px;
-     font-family: 'Quattrocento Sans', sans-serif;
+     font-family: 'Jost', sans-serif;
      line-height: 1.80857;
 }
  a {
@@ -257,7 +256,6 @@
  .our-link ul li a{
      color: #ffffff;
      font-weight: 700;
-     text-transform: uppercase;
      font-size: 14px;
 }
  .our-link ul li a:hover{
@@ -1196,7 +1194,6 @@
 }
  .footer-link ul li a::before {
      font-family: FontAwesome;
-     content: "\f105";
      position: absolute;
      left: 5px;
      line-height: 30px;

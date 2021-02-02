@@ -41,7 +41,6 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Adı</th>
-                                <th>Ana kategorisi</th>
                                 <th>İşlemler</th>
                             </tr>
                         </thead>
@@ -54,20 +53,12 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>
-                                    @if ($category->parent_id ==1)
-                                        Kadın
-                                    @elseif($category->parent_id ==2)
-                                        Erkek
-                                    @else
-
-                                    @endif
-                                <td>
                                     <div class="btn-group">
                                         <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
                                         <form action="{{ route('categories.destroy', $category->id) }}" method="post" role="form" class="mr-3">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="confirm('Silmek istiyor musunuz ?')"><i class="icon ion-trash-b"></i></button>
+                                            <button type="submit" class="btn btn-danger delete-data" ><i class="icon ion-trash-b"></i></button>
                                         </form>
                                     </div>
                                 </td>
@@ -81,7 +72,7 @@
                 </div><!-- card -->
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card p-3">
                     <div class="card-header">Yeni Kategori Ekle</div>
                     <div class="body">
                         @if (session('success'))

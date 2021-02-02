@@ -22,6 +22,7 @@ Route::namespace('Admin')->middleware(['admin'])->group(function () {
     Route::resource('sub-categories', 'SubCategoryController')->except(['show', 'create']);
     Route::resource('products', 'ProductController');
     Route::resource('orders', 'OrderController')->except(['show']);
+    Route::post('add-product-to-order', 'OrderController@addProducts')->name("admin.add-product");
     Route::resource('customers', 'CustomerController')->except(['show']);
     Route::resource('messages', 'MessageController')->except(['edit', 'update']);
 });
@@ -43,6 +44,18 @@ Route::get('/ürün-detay/{slug}', 'HomeController@productDetail')->name('front.
 //Kategori araması
 Route::get('/{category}/{subCategory}', 'HomeController@categoryPage')->name('front.category');
 
+// Hakkımızda
+Route::get('/hakkımızda', 'HomeController@about')->name('front.about');
+
+// İletişim
+Route::get('/iletişim', 'HomeController@contact')->name('front.contact');
+Route::post('/iletişim', 'HomeController@sendMessage')->name('front.send-message');
+
+//Diğer Sayfalar
+Route::get('/kvkk-politikamiz', 'HomeController@kvkkPage')->name('front.kvkk');
+Route::get('/iptal-ve-iade-kosulları', 'HomeController@cancelationCondition')->name('front.cancel');
+Route::get('/mesafeli-satis-sozlesmesi', 'HomeController@distanceContract')->name('front.distance-contract');
+
 Route::middleware('session')->group(function () {
 
         //Sepet işlemleri
@@ -55,18 +68,18 @@ Route::middleware('session')->group(function () {
 
         // Ödeme
         Route::get('/ödeme-sayfası', 'PaymentController@checkout')->name('front.checkout');
-
-        // Hakkımızda
-        Route::get('/hakkımızda', 'HomeController@about')->name('front.about');
+        Route::post('/get-districts-by-city', 'PaymentController@getDistrict')->name('front.get-districts');
+        Route::post('/siparisiniz-alindi', 'PaymentController@completeOrder')->name('front.complete-order');
 
         //Kullanıcı profili
-        Route::get('/profilim', 'HomeController@profile')->name('front.profile');
+        Route::get('/profilim', 'CustomerController@profile')->name('front.profile');
+        Route::get('/profilim-detay', 'CustomerController@profileDetail')->name('front.profile-detail');
+        Route::post('/profilim-detay', 'CustomerController@profileUpdate')->name('front.profile-update');
 
         //Siparişlerim
-        Route::get('/siparişlerim', 'HomeController@orders')->name('front.orders');
-
+        Route::get('/siparislerim', 'CustomerController@customerOrders')->name('front.orders');
+        Route::post('/siparislerim/{ordercode}', 'CustomerController@cancelOrder')->name('front.cancel-order');
+        // Route::get('/siparis-detay/{order_code}', 'CustomerController@customerOrderDetail')->name('front.order-detail');
 });
 
-//İletişim
-Route::get('/iletişim', 'HomeController@contact')->name('front.contact');
 

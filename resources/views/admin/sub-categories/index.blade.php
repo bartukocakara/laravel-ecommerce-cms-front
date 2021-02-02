@@ -58,7 +58,7 @@
                                         <form action="{{ route('sub-categories.destroy', $subCategory->id) }}" method="post" role="form" class="mr-3">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="confirm('Silmek istiyor musunuz ?')"><i class="icon ion-trash-b"></i></button>
+                                            <button type="submit" class="btn btn-danger delete-data"><i class="icon ion-trash-b"></i></button>
                                         </form>
                                     </div>
                                 </td>
@@ -72,7 +72,7 @@
                 </div><!-- card -->
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card p-3">
                     <div class="card-header">Yeni Kategori Ekle</div>
                     <div class="body">
                         @if (session('success'))

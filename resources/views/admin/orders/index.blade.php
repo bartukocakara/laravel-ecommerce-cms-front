@@ -59,7 +59,7 @@
                                 <td>{{ $order->order_code }}</td>
                                 <td>{{ $order->customer_id }}</td>
                                 <td>{{ $order->city }}</td>
-                                <td>{{ $order->sub_total }} ₺</td>
+                                <td>{{ $order->sub_total }} TRY</td>
                                 <td>
                                 @foreach ($order_status as $key => $value)
                                     @if ($order->status == $key)
@@ -73,7 +73,7 @@
                                         <form action="{{ route('orders.destroy', $order->id) }}" method="post" role="form" class="mr-3">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="confirm('Silmek istiyor musunuz ?')"><i class="icon ion-trash-b"></i></button>
+                                            <button type="submit" class="btn btn-danger delete-data"><i class="icon ion-trash-b"></i></button>
                                         </form>
                                     </div>
                                 </td>

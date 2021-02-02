@@ -41,6 +41,17 @@ return [
         'M' => 'Medium',
         'L' => 'Large',
         'XL' => 'Extra Large',
+    ],
+    'shipping_companies' => [
+        'YURTICI' => 'Yurt içi Kargo',
+        'ARAS' => 'Aras Kargo',
+        'MNG' => 'Mng Kargo',
+        'PTT' => 'Ptt Kargo',
+    ],
+    'message_types' => [
+        'HELP' => 'Yardım',
+        'SUGGESTION' => 'Öneri',
+        'COMPLIANT' => 'Şikayet',
     ]
 ]
 

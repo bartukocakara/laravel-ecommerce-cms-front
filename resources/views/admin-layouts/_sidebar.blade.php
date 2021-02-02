@@ -2,14 +2,7 @@
 @if (Auth::check())
 <div class="sl-logo"><a href="{{ route('admin.home') }}">Mona Tasarım</a></div>
 <div class="sl-sideleft">
-  <div class="input-group input-group-search">
-    <input type="search" name="search" class="form-control" placeholder="Search">
-    <span class="input-group-btn">
-      <button class="btn"><i class="fa fa-search"></i></button>
-    </span><!-- input-group-btn -->
-  </div><!-- input-group -->
 
-  <label class="sidebar-label">Navigation</label>
   <div class="sl-sideleft-menu">
     <a href="{{ route('admin.home') }}" class="sl-menu-link{{ Route::currentRouteName() == "admin.home" ? 'active' : '' }}">
       <div class="sl-menu-item">

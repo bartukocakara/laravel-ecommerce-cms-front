@@ -1,6 +1,12 @@
     <!-- Start Cart  -->
     <div class="cart-box-main">
         <div class="container">
+            @php
+                if(session()->has('customer'))
+                    {
+                        $sessionCart = App\Models\Cart::where('customer_id', Session::get('customer')['id'])->first();
+                    }
+            @endphp
             @if (isset($sessionCart))
             <div class="row">
                 <div class="col-sm-6 col-lg-6 mb-3">
@@ -8,135 +14,94 @@
                         <div class="title-left">
                             <h3>Fatura Adresi : </h3>
                         </div>
-                        <form class="needs-validation" action="" method="post">
+                        <form class="needs-validation" action="{{ route('front.complete-order') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="customer_id" value="{{ session('customer')['id'] }}" >
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="firstName">Adınız : *</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                    <input type="text" class="form-control" id="firstName" name="customer_name" value="{{ old('customer_name') }}" required>
                                     <div class="invalid-feedback"> Lütfen geçerli bir isim yazınız. </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="lastName">Soyadınız :  *</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                    <input type="text" class="form-control" id="lastName" name="customer_surname" value="{{ old('customer_surname') }}" required>
                                     <div class="invalid-feedback"> Lütfen geçerli soyisim yazınız. </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="email">Email Adresiniz : *</label>
-                                <input type="email" class="form-control" id="email" placeholder="">
+                                <input type="email" class="form-control" id="email" name="customer_email">
                                 <div class="invalid-feedback"> Lütfen geçerli email adresi yazınız. </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address">Adresiniz :  *</label>
-                                <input type="text" class="form-control" id="address" placeholder="" required>
+                                <input type="text" class="form-control" id="address" name="address" required>
                                 <div class="invalid-feedback"> Lütfen adresinizi yazınız. </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5 mb-3">
+                                    <input type="hidden" id="address_url" value="{{ route('front.get-districts') }}">
                                     <label for="country">İl : *</label>
-                                    <select class="wide w-100" id="country">
-									<option value="Choose..." data-display="Select">---İl seçiniz---</option>
-									<option value="United States">United States</option>
-								</select>
-                                    <div class="invalid-feedback"> Please select a valid country. </div>
+                                    <select class="wide w-100" name="city_id" id="city-dropdown" required>
+                                        <option value="Choose..." data-display="Select">---İl seçiniz---</option>
+                                        @foreach ($cities as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                        @endforeach
+								    </select>
+                                    <div class="invalid-feedback"> Lütfen geçerli il seçiniz. </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="state">İlçe : *</label>
-                                    <select class="wide w-100" id="state">
-									<option data-display="Select">---İlçe seçiniz---</option>
-									<option>California</option>
-								</select>
-                                    <div class="invalid-feedback"> Please provide a valid state. </div>
+                                    <select class="wide w-100" name="district_id" id="district-dropdown" required>
+								    </select>
+                                    <div class="invalid-feedback"> Lütfen geçerli ilçe seçiniz. </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="zip">Posta Kodunuz</label>
-                                    <input type="text" class="form-control" id="zip" placeholder="" required>
-                                    <div class="invalid-feedback"> Zip code required. </div>
+                                    <input type="text" class="form-control" id="zip" name="zip" required>
+                                    <div class="invalid-feedback"> Posta kodu gereklidir. </div>
                                 </div>
                             </div>
                             <hr class="mb-4">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="same-address">
+                                <input type="checkbox" class="custom-control-input" id="same-address" value="YES" name="same_address">
                                 <label class="custom-control-label" for="same-address">Gönderim adresim fatura adresiyle aynı olacak.</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="save-info">
-                                <label class="custom-control-label" for="save-info">Bu bilgileri bir sonraki alışverişim için sakla</label>
                             </div>
                             <hr class="mb-4">
                             <div class="title"> <span>Ödeme : </span> </div>
                             <div class="d-block my-3">
+                                <fieldset id="payment">
                                 @foreach ($payment_types as $key => $value)
-                                <div class="custom-control custom-radio">
-                                    <input id="credit" name="payment_type" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" value="{{ $key }}" for="credit">{{ $value }}</label>
-                                </div>
+                                    <div class="custom-radio">
+                                        <input name="payment_type" type="radio" value="{{ $key }}" required>
+                                        <label  value="{{ $key }}" for="credit">{{ $value }}</label>
+                                    </div>
                                 @endforeach
+                                </fieldset>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="cc-name">Kart Adnınız : </label>
-                                    <input type="text" class="form-control" id="cc-name" placeholder="" required> <small class="text-muted">Full name as displayed on card</small>
-                                    <div class="invalid-feedback"> Kart adınızı yazınız! </div>
+                                    <label for="cc-name">Ticari Hesabımız : </label>
+                                    <label class="form-control" for="">Ayşe</label>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="cc-number">Kart Numaranız : </label>
-                                    <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                                    <div class="invalid-feedback"> Kart numaranızı yazınız! </div>
+                                    <label for="cc-number">IBAN Numaramız : </label>
+                                    <label class="form-control" for="">TR09 0011 1000 0000 0098 6323 71</label>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <label for="cc-expiration">S. K. T.</label>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <select class="form-control" name='expireMM' id='expireMM'>
-                                        <option value='01'>01</option>
-                                        <option value='02'>02</option>
-                                        <option value='03'>03</option>
-                                        <option value='04'>04</option>
-                                        <option value='05'>05</option>
-                                        <option value='06'>06</option>
-                                        <option value='07'>07</option>
-                                        <option value='08'>08</option>
-                                        <option value='09'>09</option>
-                                        <option value='10'>10</option>
-                                        <option value='11'>11</option>
-                                        <option value='12'>12</option>
-                                    </select>
-                                    <select class="form-control" name='expireYY' id='expireYY'>
-                                        <option value='21'>2021</option>
-                                        <option value='22'>2022</option>
-                                        <option value='23'>2023</option>
-                                        <option value='24'>2024</option>
-                                        <option value='25'>2025</option>
-                                        <option value='26'>2026</option>
-                                        <option value='27'>2027</option>
-                                        <option value='28'>2028</option>
-                                        <option value='29'>2029</option>
-                                        <option value='30'>2030</option>
-                                    </select>
-                                    <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
-                                    <div class="invalid-feedback"> Expiration date required </div>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="cc-expiration">CVV</label>
-                                    <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                                    <div class="invalid-feedback"> Security code required </div>
-                                </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="payment-icon">
                                         <ul>
                                             <li><img class="img-fluid" src="{{ asset('front-assets/images/payment-icon/1.png') }}" alt=""></li>
                                             <li><img class="img-fluid" src="{{ asset('front-assets/images/payment-icon/2.png') }}" alt=""></li>
                                             <li><img class="img-fluid" src="{{ asset('front-assets/images/payment-icon/3.png') }}" alt=""></li>
-                                            <li><img class="img-fluid" src="{{ asset('front-assets/images/payment-icon/5.png') }}" alt=""></li>
-                                            <li><img class="img-fluid" src="{{ asset('front-assets/images/payment-icon/7.png') }}" alt=""></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <hr class="mb-1"> </form>
+                            <hr class="mb-1">
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
@@ -147,12 +112,14 @@
                                     <h3>Gönderim günü</h3>
                                 </div>
                                 <div class="mb-4">
+                                    <fieldset id="delivery">
                                     @foreach ($delivery_times as $key => $value)
                                         <div>
-                                            <input id="shippingOption1" name="delivery_time" value="{{ $key }}" type="radio">
-                                            <label class="custom-control-label" for="shippingOption1">{{ $value }}</label> <span class="float-right font-weight-bold">x ₺</span>
+                                            <input id="shippingOption1" name="delivery_time" value="{{ $key }}" type="radio" required>
+                                            <label for="shippingOption1">{{ $value }}</label> <span class="float-right font-weight-bold">x TRY</span>
                                         </div>
                                     @endforeach
+                                    </fieldset>
                                 </div>
                             </div>
                         </div>
@@ -162,10 +129,30 @@
                                     <h3>Sepetiniz</h3>
                                 </div>
                                 <div class="rounded p-2 bg-light">
+                                    @php
+                                        $total_quantity = 0;
+                                        $i = 0;
+                                    @endphp
                                     @foreach (json_decode($sessionCart->products, true) as $product)
+                                    @php
+                                        $total_quantity += $product["quantity"];
+                                    @endphp
                                     <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html">{{ $product['name'] }}</a>
+                                        <div class="media-body"> <a target="_blank" href="{{ route('front.product-detail', $product['product_slug']) }}">{{ $product['name'] }}</a>
+                                            <img src="{{ asset("storage/product-images/".$product['image_1']) }}" width="50" alt="">
                                             <div class="small text-muted">Ücret: {{ $product['price'] }} <span class="mx-2">|</span> Miktar: {{ $product['quantity'] }} <span class="mx-2">|</span>Alt Toplam : {{ $product['price']*$product['quantity'] }}</div>
+                                            <input type="hidden" name="products[{{ $i }}][product_id]" value="{{ $product["product_id"] }}" type="text">
+                                            <input type="hidden" name="products[{{ $i }}][name]" value="{{ $product["name"] }}" type="text">
+                                            <input type="hidden" name="products[{{ $i }}][price]" value="{{ $product["price"] }}" type="text">
+                                            <input type="hidden" name="products[{{ $i }}][quantity]" value="{{ $product["quantity"] }}" type="text">
+                                            <input type="hidden" name="products[{{ $i }}][size]" value="{{ $product["size"] }}" type="text">
+                                            <input type="hidden" name="products[{{ $i }}][image_1]" value="{{ $product["image_1"] }}" type="text">
+                                            <input type="hidden" name="products[{{ $i }}][product_slug]" value="{{ $product["product_slug"] }}" type="text">
+                                            <input type="hidden" name="total_quantity" value="{{ $total_quantity }}">
+
+                                           @php
+                                               $i++
+                                           @endphp
                                         </div>
                                     </div>
                                     @endforeach
@@ -175,19 +162,52 @@
                         </div>
                         <div class="col-md-12 col-lg-12">
                             <div class="order-box">
+                                <div class="d-flex gr-total">
+                                    <h5>Kargo ücreti</h5>
+                                    <div class="ml-auto h5"> +5 TRY</div>
+                                    <input type="hidden" name="sub_total" value="{{ $checkout->total_price }}">
+                                </div>
                                 <hr>
                                 <div class="d-flex gr-total">
-                                    <h5>Toplam Ücret</h5>
-                                    <div class="ml-auto h5"> {{ $checkout->total_price }} ₺</div>
+                                    <h5>Vergi</h5>
+                                    <div class="ml-auto h5"> 0 TRY</div>
+                                    <input type="hidden" name="tax" value="0">
                                 </div>
-                                <hr> </div>
+                                <hr>
+                                <div class="d-flex gr-total">
+                                    <h5>Net Ücret</h5>
+                                    <div class="ml-auto h5"> + {{ $checkout->total_price }} TRY</div>
+                                </div>
+                                <hr>
+
+                                <div class="d-flex gr-total">
+                                    <h5>Brüt Ücret</h5>
+                                    <div class="ml-auto h5"> {{ $checkout->total_price + 5 }} TRY</div>
+                                    <input type="hidden" name="grand_total" value="{{ $checkout->total_price + 5 + 0 }}">
+                                </div>
+                                <hr>
+
+                            </div>
                         </div>
-                        <div class="col-12 d-flex shopping-box"> <button type="submit" class="ml-auto btn btn-success go-checkout">Siparişi Tamamla</button> </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="accept_contract" value="YES">
+                            <label><a target="_blank" href="{{ route('front.distance-contract') }}">Mesafeli Satış Sözleşmesi'ni </a> okudum ve kabul ediyorum.</label>
+                        </div>
+                        <div class="col-1 d-flex shopping-box">
+
+                        <button type="submit" class="ml-auto btn btn-success go-checkout">Siparişi Tamamla</button>
+
+                        </div><br>
+                        @if($errors->any())
+
+                            <h4 class="text-danger">   {{ implode('', $errors->all(':message')) }} </h4>
+                        @endif
+                    </form>
                     </div>
                 </div>
             </div>
             @else
-            <strong>Önce ürün eklemelisiniz</strong>
+            <h1 class="border-bottom border-black">Önce ürün eklemelisiniz!</h1 >
             @endif
 
 

@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             OrderSeeder::class,
             ProductSeeder::class,
             CategorySeeder::class,
-            SubCategorySeeder::class
+            SubCategorySeeder::class,
+            CitySeeder::class,
+            DistrictSeeder::class,
             ]);
     }
 }

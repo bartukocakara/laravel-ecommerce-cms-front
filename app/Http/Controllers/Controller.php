@@ -35,4 +35,9 @@ class Controller extends BaseController
         session()->flush('customer');
     }
 
+    public function destroyCard()
+    {
+        return Cart::destroy('customer_id', session('customer')['id']);
+    }
+
 }

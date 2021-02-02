@@ -1,7 +1,7 @@
 
 @extends('front-layouts.app')
 
-@section('title', 'Ödeme')
+@section('title', 'Ödeme Sayfası')
 
 @section('navbar')
     @parent

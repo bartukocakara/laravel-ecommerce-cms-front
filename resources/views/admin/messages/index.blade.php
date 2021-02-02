@@ -28,7 +28,7 @@
                             </div>
                     @endif
                     <div class="table-wrapper">
-                    <table id="datatable1" class="table display table-bordered responsive nowrap">
+                    <table id="datatable" class="table display table-bordered responsive nowrap">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -47,7 +47,13 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $message->name }}</td>
                                 <td>{{ $message->title }}</td>
-                                <td>{{ $message->type }}</td>
+                                <td>
+                                    @foreach ($types as $key => $value)
+                                    @if ($message->type == $key)
+                                        {{ $value }}
+                                    @endif
+                                    @endforeach
+                                </td>
                                 <td>
                                     <div class="btn-group">
                                         @if ($message->status == 'UNREAD')
@@ -59,7 +65,7 @@
                                         <form action="{{ route('messages.destroy', $message->id) }}" method="post" role="form" class="mr-3">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="confirm('Silmek istiyor musunuz ?')"><i class="icon ion-trash-b"></i></button>
+                                            <button type="submit" class="btn btn-danger delete-data"><i class="icon ion-trash-b"></i></button>
                                         </form>
                                     </div>
                                 </td>

@@ -31,17 +31,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('*', function ($view)
-        //    $products = Product::all();
-            {
-            $categories = Category::all();
-            $subCategories = SubCategory::all();
-            if(session()->get('customer'))
-            {
-                $sessionCart = Cart::where('customer_id', Session::get('customer')['id'])->first();
-                $view->with(['sessionCart' =>  $sessionCart, 'categories' => $categories, 'subCategories' => $subCategories]);
-            }
-            $view->with(['categories' => $categories, 'subCategories' => $subCategories]);
-        });
+       //
     }
 }

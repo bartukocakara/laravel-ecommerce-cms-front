@@ -23,7 +23,8 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::latest()->get();
-        return view('admin.messages.index', compact('messages'));
+        $types = config('enums.message_types');
+        return view('admin.messages.index', compact('messages', 'types'));
     }
 
     /**
@@ -35,6 +36,7 @@ class MessageController extends Controller
     public function show($id)
     {
         $message = Message::find($id);
+        Message::where('id', $id)->update(['status' => 'READ']);
         return view('admin.messages.show', compact('message'));
     }
 

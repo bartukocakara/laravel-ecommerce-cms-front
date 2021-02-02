@@ -79,7 +79,7 @@
                                         <form action="{{ route('customers.destroy', $customer->id) }}" method="post" role="form" class="mr-3">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="confirm('Silmek istiyor musunuz ?')"><i class="icon ion-trash-b"></i></button>
+                                            <button type="submit" class="btn btn-danger delete-data"><i class="icon ion-trash-b"></i></button>
                                         </form>
                                     </div>
                                 </td>

@@ -20,8 +20,8 @@
         <div class="row row-sm">
 
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Ürün Düzenle</div>
+                <div class="card pd-20 pd-sm-40">
+                    <div class="card-header mb-4">Ürün Düzenle</div>
                     <div class="body">
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissable fade show" role="alert">

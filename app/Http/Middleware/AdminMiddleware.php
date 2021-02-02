@@ -17,13 +17,18 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->status == 1)
-        {
-            return $next($request);
+        if(Auth::check()){
+            if(Auth::user()->status == 1)
+            {
+                return $next($request);
+            }
+            else
+            {
+                return redirect()->back();
+            }
         }
-        else
-        {
-            return redirect()->back();
+        else {
+            return back();
         }
     }
 }

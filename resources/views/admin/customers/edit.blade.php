@@ -20,7 +20,7 @@
         <div class="row row-sm">
 
             <div class="col-md-8">
-                <div class="card">
+                <div class="card pd-20 pd-sm-40">
                     <div class="card-header">Müşteri Düzenle Ekle</div>
                     <div class="body">
                         @if (session('success'))

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\District;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -34,7 +37,17 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('admin.orders.create');
+        $cities = City::all();
+        $districts = District::all();
+        $products = Product::all();
+        $colors = config('enums.colors');
+        $delivery_times = config('enums.delivery_times');
+        $payment_types = config('enums.payment_types');
+        $order_status = config('enums.order_status');
+        $shipping_companies = config('enums.shipping_companies');
+        return view('admin.orders.create', compact('products',
+                                                    'colors', 'cities', 'districts', 'delivery_times',
+                                                    'payment_types', 'order_status', 'shipping_companies'));
     }
 
     /**
@@ -68,7 +81,25 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = Order::find($id);
-        return view('admin.orders.edit', compact('order'));
+        $products = Product::all();
+        $colors = config('enums.colors');
+        $productsOrdered = json_decode($order->products, true);
+        $cities = City::all();
+        $districts = District::all();
+        $delivery_times = config('enums.delivery_times');
+        $payment_types = config('enums.payment_types');
+        $order_status = config('enums.order_status');
+        $shipping_companies = config('enums.shipping_companies');
+        return view('admin.orders.edit', compact('order', 'productsOrdered', 'products',
+                                                 'colors', 'cities', 'districts', 'delivery_times',
+                                                    'payment_types', 'order_status', 'shipping_companies'));
+    }
+
+    public function addProducts(Request $request)
+    {
+        $data['products'] = Product::all();
+
+        return response()->json($data, 200);
     }
 
     /**
@@ -80,9 +111,9 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->orders->rules($request);
         Order::find($id)->update([
-            'parent_id' => $request->parent_id,
-            'name' => $request->name
+            $request->except(['_token', '_method'])
         ]);
 
         return redirect()->route('orders.index')->with('ordUpdated', 'Sipariş güncellendi');

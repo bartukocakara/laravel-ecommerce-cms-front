@@ -20,7 +20,7 @@
         <div class="row row-sm">
 
             <div class="col-md-8">
-                <div class="card">
+                <div class="card pd-20 pd-sm-40">
                     <div class="card-header">Kategori Düzenle</div>
                     <div class="body">
                         @if (session('success'))
@@ -34,17 +34,6 @@
                         <form action="{{ route('categories.update', $category->id) }}" method="post" role="form">
                             @csrf
                             @method('PUT')
-                            <label for="">Ana kategori :  </label>
-                            @if ($category->parent_id != 0)
-                            <select class="form-control" name="parent_id" id="">
-                                <option value="1">Kadın</option>
-                                <option value="2">Erkek</option>
-                            </select>
-                            @else
-                            <select class="form-control" name="parent_id" id="" disabled>
-                            </select>
-                            @endif
-
                             <label for="">Kategori adı :  </label>
                             <input type="text" class="form-control" name="name" @error('name') is-invalid @enderror placeholder="İsim yazınız" value="{{ $category->name }}"><br>
                             @error('name')

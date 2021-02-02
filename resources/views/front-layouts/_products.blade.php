@@ -34,11 +34,11 @@
                                             <input type="hidden" name="products[image_1]" value="{{ $product->image_1 }}" type="text">
                                             <input type="hidden" name="products[product_slug]" value="{{ $product->product_slug }}" type="text">
                                             <button type="submit" class="btn @if($product->stock_status == 1) btn-success @else btn-danger @endif cart " @if($product->stock_status == 0) disabled title="Stoğu tükenmiş" @endif >Sepete Ekle</button>
-                                            <a class="btn btn-info show" href="{{ route('front.product-detail', $product->product_slug) }}" data-toggle="tooltip" data-placement="right" title="göster">Ürün detayı</i></a>
+                                            <a class="btn" href="{{ route('front.product-detail', $product->product_slug) }}" data-toggle="tooltip" data-placement="right" title="göster">Ürün detayı</i></a>
                                         </form>
                                         <br>
                                         <h4>{{ $product->name ." - " .$product->size }}</h4>
-                                        <h5>{{ $product->price }} ₺</h5>
+                                        <h5>{{ $product->price }} TRY</h5>
                                     </div>
                                 </div>
                             </div>

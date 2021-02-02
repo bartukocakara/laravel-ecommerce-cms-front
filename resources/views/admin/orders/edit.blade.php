@@ -16,7 +16,7 @@
         <div class="row row-sm">
 
             <div class="col-md-12">
-                <div class="card">
+                <div class="card pd-20 pd-sm-40">
                     <div class="card-header">Sipariş Düzenle</div>
                         <div class="body">
                             @if(session('success'))
@@ -27,56 +27,71 @@
                                     </button>
                                 </div>
                             @endif
+                            @if($errors->any())
+
+                            <h4 class="text-danger">   {{ implode('', $errors->all(':message')) }} </h4>
+                            @endif
                             <form action="{{ route('orders.update', $order->id) }}" method="post" role="form">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="">Adı : </label>
-                                        <input type="text" class="form-control" name="name"
-                                        @error('name')
+                                        <input type="text" class="form-control" name="customer_name"
+                                        @error('customer_name')
                                         is-invalid
                                         @enderror placeholder="İsim yazınız" value="{{ $order->customer_name }}"><br>
-                                        @error('name')
+                                        @error('customer_name')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="">Soyadı : </label>
-                                        <input type="text" class="form-control" name="surname"
-                                        @error('surname')
+                                        <input type="text" class="form-control" name="custmer_surname"
+                                        @error('custmer_surname')
                                         is-invalid
                                         @enderror placeholder="Soyisim yazınız" value="{{ $order->customer_surname }}"><br>
-                                        @error('surname')
+                                        @error('custmer_surname')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="">Email : </label>
-                                        <input type="email" class="form-control" name="email"
-                                        @error('email')
+                                        <input type="email" class="form-control" name="customer_email"
+                                        @error('customer_email')
                                         is-invalid
                                         @enderror placeholder="Email yazınız" value="{{ $order->customer_email }}"><br>
-                                        @error('email')
+                                        @error('customer_email')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label for="">İl : </label>
-                                        <select class="form-control" name="city" id="">
+                                        <label for="">Adres Detay : </label>
+                                        <textarea class="form-control" @error('note') is-invalid @enderror placeholder="Adres yazınız..." name="address" id="" cols="20" rows="5">{{ $order->address }}</textarea>
+                                        @error('note')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="city">İller:</label>
+                                        <select class="form-control" name="city" id="city-dropdown">
                                             <option value="">---İl seçiniz---</option>
-                                            <option value=""></option>
+                                            @foreach ($cities as $city)
+                                                <option @if ($city->id == $order->city_id) selected @endif value="{{$city->id}}">{{$city->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label for="">İlçe : </label>
-                                        <select class="form-control" name="district" id="">
-                                            <option value="">---İlçe seçiniz---</option>
-                                            <option value=""></option>
+                                        <label for="district">İlçeler</label>
+                                        <select class="form-control" name="district" id="district-dropdown">
+                                            @foreach ($districts as $district)
+                                            <option @if($order->district_id == $district->id) selected @endif value="{{ $district->id }}">{{ $district->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -90,46 +105,30 @@
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <label for="">Ürünler : </label>
-                                    <button class="btn btn-sm btn-info" id="addProduct">Ürün Ekle</button>
 
+                                    {{-- Ürünler  --}}
                                     <div class="col-md-12 row">
-                                        <div class="col-md-6">
-                                            <select class="form-control" name="products" id="">
-                                                <option value="">---Ürün</option>
-                                                <option value=""></option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <select class="form-control" name="products" id="">
-                                                <option value=""></option>
-                                                <option value=""></option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <select class="form-control" name="products" id="">
-                                                <option value=""></option>
-                                                <option value=""></option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <select class="form-control" name="products" id="">
-                                                <option value=""></option>
-                                                <option value=""></option>
-                                            </select>
-                                        </div>
+                                    <div class="col-md-12">
+                                        <label for="" style="margin-left:20px">Ürünler : </label>
+                                     </div>
+                                        <input type="hidden" value="{{ route('admin.add-product') }}" id="add-product-url">
+                                            @foreach ($productsOrdered as $ordered)
+                                                <div class="col-md-6 mb-4">
+                                                    <select class="form-control" name="products" id="">
+                                                        @foreach ($products as $product)
+                                                        <option @if ($product->id == $ordered['product_id']) selected @endif value="{{ $product->id }}"> {{ $product->name ." - " .$product->size  . " - " . $product->price . " TRY"}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endforeach
                                     </div>
-                                    <br>
-                                    <div class="col-md-6">
-                                        <label for="">İndirim : </label>
-                                        <input type="text" class="form-control" name="discount"
-                                        @error('discount')
-                                        is-invalid
-                                        @enderror placeholder="İsim yazınız" value="{{ $order->discount }}"><br>
-                                        @error('discount')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                    {{-- <input type="button" class="btn btn-sm btn-info ml-4" id="addProduct" value="Ürün Ekle"> --}}
+
+                                    {{-- ürünler Eklenecek --}}
+                                    {{-- <div class="col-md-12 row" id="buildOrders">
+
                                     </div>
+                                    <br> --}}
 
                                     <div class="col-md-6">
                                         <label for="">Taşıma ücreti : </label>
@@ -167,7 +166,7 @@
                                     <div class="col-md-6">
                                         <label for="">Brüt ödeme : </label>
                                         <input type="text" class="form-control" name="sub_total"
-                                        @error('name')
+                                        @error('sub_total')
                                         is-invalid
                                         @enderror placeholder="Brüt ödeme" value="{{ $order->sub_total }}"><br>
                                         @error('sub_total')
@@ -178,7 +177,7 @@
                                     <div class="col-md-6">
                                         <label for="">Toplam ürün miktarı : </label>
                                         <input type="text" class="form-control" name="total_quantity"
-                                        @error('name')
+                                        @error('total_quantity')
                                         is-invalid
                                         @enderror placeholder="Ürün miktarı" value="{{ $order->total_quantity }}"><br>
                                         @error('total_quantity')
@@ -188,10 +187,7 @@
 
                                     <div class="col-md-6">
                                         <label for="">Notu : </label>
-                                        <input type="text" class="form-control" name="note"
-                                        @error('name')
-                                        is-invalid
-                                        @enderror placeholder="Not yazınız" value="{{ $order->note }}"><br>
+                                        <textarea class="form-control" @error('note') is-invalid @enderror placeholder="Not yazınız" name="note" id="" cols="20" rows="5">{{ $order->bote }}</textarea>
                                         @error('note')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -201,17 +197,19 @@
                                         <label for="">Kargo : </label>
                                         <select class="form-control" name="shipping_company" id="">
                                             <option value="">---Kargo firması---</option>
-                                            <option value=""></option>
+                                            @foreach ($shipping_companies as $key => $value)
+                                            <option @if($order->shipping_company == $key) selected @endif value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="">Toplam ürün miktarı : </label>
-                                        <input type="text" class="form-control" name="total_quantity"
-                                        @error('name')
+                                        <input type="number" class="form-control" name="total_quantity"
+                                        @error('total_quantity')
                                         is-invalid
                                         @enderror placeholder="Toplam miktar" value="{{ $order->total_quantity }}"><br>
-                                        @error('name')
+                                        @error('total_quantity')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -220,15 +218,19 @@
                                         <label for="">Ulaştırma günü : </label>
                                         <select class="form-control" name="delivery_time" id="">
                                             <option value="">---Ulaştırma günü---</option>
-                                            <option value=""></option>
+                                            @foreach ($delivery_times as $key => $value)
+                                            <option @if($order->delivery_time == $key) selected @endif value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="">Ödeme türü : </label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="payment_type" id="">
                                             <option value="">---Ödeme Türü---</option>
-                                            <option value=""></option>
+                                            @foreach ($payment_types as $key => $value)
+                                            <option @if($order->payment_type == $key) selected @endif value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -236,7 +238,9 @@
                                         <label for="">Sipariş durumu : </label>
                                         <select class="form-control" name="status" id="">
                                             <option value="">---Sipariş Durumu---</option>
-                                            <option value="">Sipariş Durumu</option>
+                                            @foreach ($order_status as $key => $value)
+                                            <option @if($order->status == $key) selected @endif value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 

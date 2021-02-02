@@ -4,6 +4,8 @@
 <script src="{{ asset('admin-assets/lib/popper.js/popper.js') }}"></script>
 <script src="{{ asset('admin-assets/lib/bootstrap/bootstrap.js') }}"></script>
 <script src="{{ asset('admin-assets/lib/jquery-ui/jquery-ui.js') }}"></script>
+<script src="{{ asset('admin-assets/js/custom.js') }}"></script>
+
 <script>
     $(function(){
       'use strict';
@@ -11,7 +13,7 @@
       $('#datatable1').DataTable({
         responsive: true,
         language: {
-          searchPlaceholder: 'Search...',
+          searchPlaceholder: 'Ara...',
           sSearch: '',
           lengthMenu: '_MENU_ items/page',
         }

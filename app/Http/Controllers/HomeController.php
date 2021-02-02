@@ -16,7 +16,6 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::all();
-
         $categories = Category::all();
         return view('front.index', compact('products', 'categories'));
     }
@@ -42,7 +41,18 @@ class HomeController extends Controller
 
     public function contact()
     {
-        return view('front.contact');
+        $message_types = config('enums.message_types');
+        return view('front.contact', compact('message_types'));
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'title' => 'required|string|max:50',
+            'content' => 'required|string|max|200',
+        ]);
     }
 
     public function contactSubmit(Request $request)
@@ -51,12 +61,6 @@ class HomeController extends Controller
             $request->except('_token')
         );
         return redirect()->with('status', 'Mesajınız iletildi');
-    }
-
-    public function profile()
-    {
-        $customer = Customer::where('id', Auth::id())->get();
-        return view('front.profile', compact('customer'));
     }
 
     public function products()
@@ -70,5 +74,20 @@ class HomeController extends Controller
         $product = Product::where('product_slug', $slug)->first();
         $sizes = config("enums.sizes");
         return view('front.product-detail', compact('product', 'sizes'));
+    }
+
+    public function kvkkPage()
+    {
+        return view('front.kvkk');
+    }
+
+    public function cancelationCondition()
+    {
+        return view('front.cancel-return-policy');
+    }
+
+    public function distanceContract()
+    {
+        return view('front.distance-contract');
     }
 }

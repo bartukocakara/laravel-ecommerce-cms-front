@@ -220,4 +220,27 @@
         });
     });
 
+    $(document).ready(function(){
+        $(".empty-cart").click(function(){
+          if (!confirm("Sepeti boşaltmak istiyor musunuz")){
+            return false;
+          }
+        });
+      });
+    $(document).ready(function(){
+        $(".remove-from-cart").click(function(){
+          if (!confirm("Ürünü sepetten çıkarmak istiyor musunuz ?")){
+            return false;
+          }
+        });
+      });
+      $(document).ready(function(){
+        $(".cancel-order").click(function(){
+          if (!confirm("Siparişinizi iptal etmek istiyor musunuz?")){
+            return false;
+          }
+        });
+      });
+
+
 }(jQuery));

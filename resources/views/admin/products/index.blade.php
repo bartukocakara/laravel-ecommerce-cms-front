@@ -52,7 +52,7 @@
                                 <th>Görsel</th>
                                 <th>Ad</th>
                                 <th>Ücret</th>
-                                <th>Miktar</th>
+                                {{-- <th>Miktar</th> --}}
                                 <th>Stok Durumu</th>
                                 <th>İşlemler</th>
                             </tr>
@@ -67,15 +67,21 @@
                                 <td><img src="{{ asset('storage/product-images/'.$product->image_1) }}" width="100" alt=""></td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->price }}</td>
-                                <td>{{ $product->quantity }}</td>
-                                <td>{{ $product->stock_status }}</td>
+                                {{-- <td>{{ $product->quantity }}</td> --}}
+                                <td>
+                                    @if ($product->stock_status == 1)
+                                    Var
+                                    @else
+                                        Yok
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
                                         <form action="{{ route('products.destroy', $product->id) }}" method="post" role="form" class="mr-3">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="confirm('Silmek istiyor musunuz ?')"><i class="icon ion-trash-b"></i></button>
+                                            <button type="submit" class="btn btn-danger delete-data"><i class="icon ion-trash-b"></i></button>
                                         </form>
                                     </div>
                                 </td>

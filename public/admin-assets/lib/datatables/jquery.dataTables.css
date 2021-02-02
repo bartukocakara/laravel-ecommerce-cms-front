@@ -88,7 +88,7 @@ table.dataTable.cell-border tbody tr:first-child td {
   border-top: none;
 }
 table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
-  background-color: #f9f9f9;
+  background-color: #eef4ff;
 }
 table.dataTable.stripe tbody tr.odd.selected, table.dataTable.display tbody tr.odd.selected {
   background-color: #acbad4;
@@ -114,7 +114,7 @@ table.dataTable.display tbody tr.selected > .sorting_3 {
   background-color: #acbad5;
 }
 table.dataTable.display tbody tr.odd > .sorting_1, table.dataTable.order-column.stripe tbody tr.odd > .sorting_1 {
-  background-color: #f1f1f1;
+  background-color: #eef4ff;
 }
 table.dataTable.display tbody tr.odd > .sorting_2, table.dataTable.order-column.stripe tbody tr.odd > .sorting_2 {
   background-color: #f3f3f3;
@@ -391,6 +391,7 @@ table.dataTable td {
 .dataTables_wrapper .dataTables_info,
 .dataTables_wrapper .dataTables_processing,
 .dataTables_wrapper .dataTables_paginate {
+  margin-top: 5px;
   color: #333;
 }
 .dataTables_wrapper .dataTables_scroll {

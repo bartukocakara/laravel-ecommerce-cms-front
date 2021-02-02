@@ -20,7 +20,7 @@
         <div class="row row-sm">
 
             <div class="col-md-12">
-                <div class="card">
+                <div class="card pd-20 pd-sm-40">
                     <div class="card-header">Mesaj Görüntüle</div>
                     <div class="body">
                         @if (session('success'))
