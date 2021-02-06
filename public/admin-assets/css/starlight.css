@@ -2486,6 +2486,8 @@ tbody.collapse.show {
 }
 
 .dropdown-menu.show {
+  border-radius: 40px;
+  background-color: #191e5b;
   display: block;
 }
 
@@ -11926,7 +11928,7 @@ textarea.parsley-success:focus {
   position: relative;
   border: 0;
   padding: 10px;
-  background-color: #2f3844;
+  background-color: #191e5b;
   border-radius: 0;
   box-shadow: none;
   left: auto !important;
@@ -11941,6 +11943,7 @@ textarea.parsley-success:focus {
   font-size: 13px;
 }
 .user-profile-nav a {
+  place-content: center;
   display: flex;
   align-items: center;
   padding: 0 10px;
@@ -11949,7 +11952,7 @@ textarea.parsley-success:focus {
   transition: all 0.2s ease-in-out;
 }
 .user-profile-nav a:hover, .user-profile-nav a:focus {
-  background-color: #2b333e;
+  background-color: #191e5b;
   color: #fff;
 }
 .user-profile-nav .icon {
@@ -12004,6 +12007,10 @@ textarea.parsley-success:focus {
   top: 10px;
   right: -5px;
   border-radius: 100%;
+}
+
+.w-change, .s-change{
+    width:40%;
 }
 
 .sl-sideleft {

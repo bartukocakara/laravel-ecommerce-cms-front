@@ -10,6 +10,7 @@ return [
         'COMPLETED' => 'Tamamlandı',
         'DECLINED' => 'Reddedildi',
         'ON_DELIVERY' => 'Yolda',
+        'CANCELED' => 'İptal Edildi'
     ],
     'delivery_times' => [
         '1_DAY' => '1 Gün',
@@ -52,6 +53,10 @@ return [
         'HELP' => 'Yardım',
         'SUGGESTION' => 'Öneri',
         'COMPLIANT' => 'Şikayet',
+    ],
+    'stock_status' => [
+        '0' => 'Stok yok',
+        '1' => 'Stok var'
     ]
 ]
 

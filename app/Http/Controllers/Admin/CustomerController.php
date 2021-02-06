@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -44,12 +45,11 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:cusegories,name'
-        ]);
-
+        $this->customers->rules($request);
+        $datas = $request->except('_token');
+        $datas['password'] = Hash::make($request->password);
         Customer::insert([
-            'name' => $request->name,
+            $datas
         ]);
 
         return redirect()->back()->with('success', 'Müşteri eklendi');

@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <br>
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
+                <div class="card-header m-3 text-center">Giriş Yapınız</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -42,10 +42,10 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="m-1" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                    <label class="m-1" for="remember">
+                                        Beni hatırla
                                     </label>
                                 </div>
                             </div>
@@ -54,15 +54,17 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    Giriş Yap
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        Şifrenizi mi unuttunuz ?
                                     </a>
                                 @endif
                             </div>
+                            <span class="mt-2">Üyeliğiniz yoksa :</span>
+                            <a class="btn btn-primary ml-2" href="{{ route('register') }}">Kayıt ol</a>
                         </div>
                     </form>
                 </div>

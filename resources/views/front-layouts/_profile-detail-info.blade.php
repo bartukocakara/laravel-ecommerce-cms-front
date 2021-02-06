@@ -18,6 +18,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label for="">İsim : </label>
                                         <input type="text" class="form-control" id="name" name="name" value="{{ $customer->name }}" placeholder="Adınız" required data-error="Lütfen adınızı yazınız">
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -25,6 +26,7 @@
 
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label for="">Soyisim : </label>
                                         <input type="text" class="form-control" id="name" name="surname" value="{{ $customer->surname }}" placeholder="Soyadınız" required data-error="Lütfen soyadınızı yazınız">
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -32,7 +34,15 @@
 
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label for="">Email : </label>
                                         <input type="email" placeholder="Email adresiniz" id="email" class="form-control" name="email" value="{{ $customer->email }}" required data-error="Lütfen email adresi yazınız">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="">Adres : </label>
+                                        <textarea class="form-control" name="address" placeholder="Sipariş adresiniz" id="address" cols="30" rows="5" required data-error="Lütfen adresinizi yazınız">{{ $customer->address }}</textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>

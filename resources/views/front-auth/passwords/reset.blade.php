@@ -1,58 +1,48 @@
 @extends('front-layouts.app')
-
+@section('title', 'Şifremi Unuttum')
 @section('content')
 <div class="contact-box-main">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-sm-12">
-                <div class="contact-info-left">
-                    <h2>CONTACT INFO</h2>
-                    <ul>
-                        <li>
-                            <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
-                        </li>
-                        <li>
-                            <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
-                        </li>
-                        <li>
-                            <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <div class="col-lg-8 col-sm-12">
                 <div class="contact-form-right">
-                    <h2>GET IN TOUCH</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio justo, ultrices ac nisl sed, lobortis porta elit. Fusce in metus ac ex venenatis ultricies at cursus mauris.</p>
-                    <form id="contactForm">
+                    <h2>Şifremi Yenile</h2>
+                    @if($errors->any())
+                        <div class="alert alert-warning alert-dismissable fade show" role="alert">
+                        <strong>{{ implode('', $errors->all(':message')) }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if(session('error'))
+                        <div class="alert alert-warning alert-dismissable fade show" role="alert">
+                        <strong>{{ session('error') }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    <form action="{{ url('sifremi-yenile') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="token" value="{{ $token }}">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required data-error="Please enter your name">
+                                    <input type="text" placeholder="Email adresiniz" id="email" class="form-control" name="email" required data-error="Lütfn email adresinizi giriniz.">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" placeholder="Yeni şifreniz" id="password" class="form-control" name="password" required data-error="Lütfn şifrenizi giriniz.">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" placeholder="Yeni şifreniz tekrar" id="email" class="form-control" name="password_confirmation" required data-error="Lütfn şifrelerinizi aynı yazınız.">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" placeholder="Your Email" id="email" class="form-control" name="name" required data-error="Please enter your email">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="subject" name="name" placeholder="Subject" required data-error="Please enter your Subject">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea class="form-control" id="message" placeholder="Your Message" rows="4" data-error="Write your message" required></textarea>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="submit-button text-center">
-                                    <button class="btn hvr-hover" id="submit" type="submit">Send Message</button>
-                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                    <div class="clearfix"></div>
+                            <div class="text-center row mx-auto">
+                                    <button class="btn text-white go-checkout mr-3" type="submit">Yenile</button>
                                 </div>
                             </div>
                         </div>

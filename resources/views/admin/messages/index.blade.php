@@ -28,7 +28,7 @@
                             </div>
                     @endif
                     <div class="table-wrapper">
-                    <table id="datatable" class="table display table-bordered responsive nowrap">
+                    <table id="datatable1" class="table display table-bordered responsive nowrap">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -57,9 +57,9 @@
                                 <td>
                                     <div class="btn-group">
                                         @if ($message->status == 'UNREAD')
-                                        <a href="{{ route('messages.show', $message->id) }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('messages.show', $message->id) }}" class="btn btn-sm btn-success mr-1"><i class="fa fa-eye"></i></a>
                                         @else
-                                        <a href="{{ route('messages.show', $message->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-eye-slash"></i></a>
+                                        <a href="{{ route('messages.show', $message->id) }}" class="btn btn-sm btn-danger mr-1"><i class="fa fa-eye-slash"></i></a>
 
                                         @endif
                                         <form action="{{ route('messages.destroy', $message->id) }}" method="post" role="form" class="mr-3">

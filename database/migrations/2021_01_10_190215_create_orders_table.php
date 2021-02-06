@@ -34,7 +34,7 @@ class CreateOrdersTable extends Migration
             $table->enum('shipping_company', ['YURTICI', 'ARAS', 'MNG', 'PTT'])->nullable(true);
             $table->enum('delivery_time', ['1_DAY', '2-4_DAY', '3-7_DAY']);
             $table->enum('payment_type', ['HAVALE', 'EFT', 'CREDIT_CARD']);
-            $table->enum('status', ['PENDING', 'COMPLETED', 'DECLINED', 'ON_DELIVERY']);
+            $table->enum('status', ['PENDING', 'COMPLETED', 'DECLINED', 'ON_DELIVERY', 'CANCELED']);
             $table->string('card_number')->nullable(true);
             $table->string('card_expiration')->nullable(true);
             $table->string('card_cvv')->nullable(true);

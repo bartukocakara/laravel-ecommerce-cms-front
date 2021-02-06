@@ -54,7 +54,7 @@
                                 <td>{{ $category->name }}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-success mr-1"><i class="fa fa-edit"></i></a>
                                         <form action="{{ route('categories.destroy', $category->id) }}" method="post" role="form" class="mr-3">
                                             @csrf
                                             @method('DELETE')

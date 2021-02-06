@@ -37,17 +37,23 @@
           <i class="menu-item-icon icon ion-person-stalker tx-20"></i>
           <span class="menu-item-label">Müşteriler</span>
         </div><!-- menu-item -->
-      </a><!-- sl-menu-link -->
+    </a><!-- sl-menu-link -->
 
-      <a href="{{ route('orders.index') }}" class="sl-menu-link{{ Route::currentRouteName() == "orders.index" ? 'active' : '' }}">
+    <a href="{{ route('orders.index') }}" class="sl-menu-link{{ Route::currentRouteName() == "orders.index" ? 'active' : '' }}">
         <div class="sl-menu-item">
           <i class="menu-item-icon fa fa-cart-plus tx-20"></i>
           <span class="menu-item-label">Siparişler</span>
         </div><!-- menu-item -->
-      </a><!-- sl-menu-link -->
+    </a><!-- sl-menu-link -->
+    @php
+          $messagesStatus = App\Models\Message::where('status', 'UNREAD')->get();
+          @endphp
     <a href="{{ route('messages.index') }}" class="sl-menu-link">
       <div class="sl-menu-item">
         <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
+        <span id="message" class="badge @if($messagesStatus->count() > 0) btn-success @endif">
+            {{ $messagesStatus->count() }}
+        </span>
         <span class="menu-item-label">Mesajlar</span>
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->

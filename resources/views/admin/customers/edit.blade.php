@@ -11,9 +11,6 @@
     @parent
 @endsection
 
-
-
-
 @section('content')
 <div class="sl-mainpanel">
     <div class="sl-pagebody">
@@ -21,7 +18,7 @@
 
             <div class="col-md-8">
                 <div class="card pd-20 pd-sm-40">
-                    <div class="card-header">Müşteri Düzenle Ekle</div>
+                    <div class="card-header m-2">Müşteri Düzenle</div>
                     <div class="body">
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissable fade show" role="alert">
@@ -69,6 +66,17 @@
                                 </div>
 
                                 <div class="col-md-6">
+                                    <label for="">Şifre : </label>
+                                    <input type="password" class="form-control" name="password"
+                                    @error('email')
+                                    is-invalid
+                                    @enderror placeholder="Şifre yazınız" value="{{ $customer->password }}"><br>
+                                    @error('password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
                                     <label for="">Telefon numarası : </label>
                                     <input type="text" class="form-control" name="phone"
                                     @error('phone')
@@ -81,32 +89,14 @@
 
                                 <div class="col-md-6">
                                     <label for="">Adresi : </label>
-                                    <input type="text" class="form-control" name="address"
-                                    @error('address')
+                                    <textarea class="form-control" name="address" id="" cols="30" rows="5" placeholder="Adres yazınız" @error('address')
                                     is-invalid
-                                    @enderror placeholder="Adres yazınız" value="{{ $customer->address }}"><br>
+                                    @enderror>{{ $customer->address }}</textarea>
                                     @error('address')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label for="">2. Adresi : </label>
-                                    <input type="text" class="form-control" name="second_address"
-                                    @error('second_address')
-                                    is-invalid
-                                    @enderror placeholder="İkinci adres yazınız(varsa)" value="{{ $customer->second_address }}"><br>
-                                    @error('second_address')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="">Siparişleri : </label>
-                                    <select class="form-control" name="" id="">
-                                        <option value=""><a href="">Sipariş Kodu - Ürün listesi</a></option>
-                                    </select>
-                                </div>
                             <button type="submit" class="btn btn-info">Güncelle</button>
                             </div>
                         </form>

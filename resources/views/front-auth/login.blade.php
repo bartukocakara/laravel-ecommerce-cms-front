@@ -40,10 +40,10 @@
                                     <input type="password" class="form-control" id="subject" name="password" placeholder="Şifreniz" required data-error="Lütfen şifrenizi giriniz.">
                                     <div class="help-block with-errors"></div>
                                 </div>
-                                <div class="submit-button text-center">
-                                    <button class="btn go-checkout" type="submit">Giriş Yap</button>
-                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                    <div class="clearfix"></div>
+                                <div class="text-center row mx-auto">
+                                    <button class="btn text-white go-checkout mr-3" type="submit">Giriş Yap</button>
+                                    <a class="btn text-white go-checkout mr-3" href="{{ route('front.register') }}">Kayıt Ol</a>
+                                    <a class="btn btn-primary" href="{{ route('front.forgot-password') }}">Şifrenizi mi unuttunuz ?</a>
                                 </div>
                             </div>
                         </div>

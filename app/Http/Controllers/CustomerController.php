@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\OrderCancel;
+use App\Mail\OrderCancelRequest;
 use App\Models\Customer;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -34,11 +35,17 @@ class CustomerController extends Controller
     {
         $datas = Order::where('order_code', $ordercode)->first();
         $products = json_decode($datas->products, true);
-        Mail::to('kocakarabartu@gmail.com')->send(new OrderCancel($datas, $products));
-        $cancel = $datas->delete();
-        if($cancel)
+        if($datas->status == 'DECLINED')
         {
-            return back()->with('success', 'Siparişiniz iptal edilmiştir.');
+            return back()->with('already_declined', 'Sipariş iptal talebiniz önceden oluşturulmuş.Ekibimiz email yoluyla dönüş sağlayacaktır');
+        }
+        elseif($datas)
+        {
+            $datas->update([
+                'status' => 'DECLINED'
+            ]);
+            Mail::to('kocakarabartu@gmail.com')->send(new OrderCancelRequest($datas, $products));
+            return back()->with('success', 'Sipariş iptal talebiniz gönderilmiştir.Yetkili ekibimiz size email yoluyla dönüş sağlayacaktır.');
         }
         back()->with('fail', 'Birşeyler yanlış gitti.Sorunun sebebini anlamak için bize ulaşabilirsiniz.');
     }

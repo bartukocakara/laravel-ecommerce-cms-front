@@ -8,15 +8,15 @@
     <div class="sl-header-right">
       <nav class="nav">
         <div class="dropdown">
-          <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
+          <a href="" class="nav-link nav-link-profile dropdown-toggle" data-toggle="dropdown">
             <span class="logged-name">{{ Auth::user()->name }}</span>
           </a>
-          <div class="dropdown-menu dropdown-menu-header wd-200">
+          <div class="dropdown-menu dropdown-menu-header mr-2 wd-100">
             <ul class="list-unstyled user-profile-nav">
-              <li><a class="dropdown-item" href="{{ route('logout') }}" --}}
+              <li><a class="dropdown-item text-center" href="{{ route('logout') }}" --}}
                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    Çıkış Yap
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -27,14 +27,6 @@
           </div><!-- dropdown-menu -->
         </div><!-- dropdown -->
       </nav>
-      <div class="navicon-right">
-        <a id="btnRightMenu" href="" class="pos-relative">
-          <i class="icon ion-ios-bell-outline"></i>
-          <!-- start: if statement -->
-          <span class="square-8 bg-danger"></span>
-          <!-- end: if statement -->
-        </a>
-      </div><!-- navicon-right -->
     </div><!-- sl-header-right -->
   </div><!-- sl-header -->
   <!-- ########## END: HEAD PANEL ########## -->

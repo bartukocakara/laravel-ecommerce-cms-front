@@ -2,7 +2,9 @@
     <!-- Start My Account  -->
     <h2 class="font-weight-bold text-center p-2">Siparişleriniz :</h2>
     <div class="my-account-box-main">
-        @if (session('success'))
+
+        <div class="container">
+            @if (session('success'))
             <div class="alert alert-success alert-dismissable fade show" role="alert">
             <strong>{{ session('success') }}</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="close">
@@ -10,14 +12,20 @@
                 </button>
             </div>
         @elseif (session('fail'))
-            <div class="alert alert-dange alert-dismissable fade show" role="alert">
+            <div class="alert alert-danger alert-dismissable fade show" role="alert">
             <strong>{{ session('fail') }}</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+        @elseif (session('already_declined'))
+            <div class="alert alert-warning alert-dismissable fade show" role="alert">
+            <strong>{{ session('already_declined') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @endif
-        <div class="container">
             @if (count($orders))
             <div class="my-account-page">
                 @foreach ($orders as $order)

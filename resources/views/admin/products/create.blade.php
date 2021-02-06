@@ -19,20 +19,21 @@
       </div><!-- sl-page-title -->
 
       <div class="card pd-20 pd-sm-40">
-
+        @if($errors->any())
+            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                @if($errors->any())
+                    {!! implode('', $errors->all('<div>:message</div>')) !!}
+                @endif
+                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
         <div class="form-layout">
             <form action="{{ route('products.store') }}" method="post" role="form" enctype="multipart/form-data">
                 @csrf
                     <div class="row">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                        <input type="hidden" name="stock_status" value="1">
                         <div class="col-md-6">
                             <label for="">Ad : </label>
                             <input type="text" class="form-control" name="name"
@@ -61,7 +62,7 @@
 
                         <div class="col-md-6">
                             <label for="">Beden : </label>
-                            <select class="form-control" name="sub_category_id" value="{{ old('sub_category_id') }}" id="">
+                            <select class="form-control" name="size" value="{{ old('sub_category_id') }}" id="">
                                 <option value="">---Beden seçiniz---</option>
                                 @foreach ($sizes as $key => $value)
                                 <option value="{{ $key }}">{{ $value }}</option>

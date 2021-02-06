@@ -17,12 +17,14 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
                //      ---ADMIN---    //
 Route::namespace('Admin')->middleware(['admin'])->group(function () {
+    // Route::post('/change-status', 'OrderController@changeOrderStatus')->name('admin.change-status');
     Route::get('/genel-tablolar', 'HomeController@home')->name('admin.home');
     Route::resource('categories', 'CategoryController')->except(['show', 'create']);
     Route::resource('sub-categories', 'SubCategoryController')->except(['show', 'create']);
     Route::resource('products', 'ProductController');
-    Route::resource('orders', 'OrderController')->except(['show']);
-    Route::post('add-product-to-order', 'OrderController@addProducts')->name("admin.add-product");
+    Route::post('change-product-status', 'ProductController@changeProductStatus')->name('admin.change-product-status');
+    Route::resource('orders', 'OrderController')->except(['edit', 'update', 'create', 'store']);
+    Route::post('change-status', 'OrderController@changeOrderStatus')->name('admin.change-status');
     Route::resource('customers', 'CustomerController')->except(['show']);
     Route::resource('messages', 'MessageController')->except(['edit', 'update']);
 });
@@ -32,7 +34,10 @@ Route::get('/giriş-yap', 'FrontAuth\FrontLoginController@login')->name('front.l
 Route::post('/giriş-yap', 'FrontAuth\FrontLoginController@loginSubmit')->name('front.login-submit');
 Route::get('/kayıt-ol', 'FrontAuth\FrontRegisterController@register')->name('front.register');
 Route::post('/kayıt-ol', 'FrontAuth\FrontRegisterController@registerPost')->name('front.register-submit');
-
+Route::get('/sifremi-unuttum', 'FrontAuth\FrontForgotPasswordContoller@forgotPassword')->name('front.forgot-password');
+Route::post('/sifremi-unuttum', 'FrontAuth\FrontForgotPasswordContoller@submitForgot')->name('front.submit-forgot-password');
+Route::get('/sifremi-yenile/{token}', 'FrontAuth\ResetPasswordController@getPassword');
+Route::post('/sifremi-yenile', 'FrontAuth\ResetPasswordController@updatePassword');
 //Ana sayfa
 Route::get('/', 'HomeController@index')->name('front.home');
 Route::get('/çıkış-yap', 'FrontAuth\FrontLoginController@logout')->name('front.logout');
@@ -49,7 +54,7 @@ Route::get('/hakkımızda', 'HomeController@about')->name('front.about');
 
 // İletişim
 Route::get('/iletişim', 'HomeController@contact')->name('front.contact');
-Route::post('/iletişim', 'HomeController@sendMessage')->name('front.send-message');
+Route::post('/iletişim', 'HomeController@contactSubmit')->name('front.send-message');
 
 //Diğer Sayfalar
 Route::get('/kvkk-politikamiz', 'HomeController@kvkkPage')->name('front.kvkk');

@@ -17,12 +17,13 @@ class Product extends Model
     public function rules(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:products,name',
+            'name' => 'required|string|max:30|min:8',
             'category_id' => 'required',
             'sub_category_id' => 'required',
             'color' => 'required',
             'price' => 'required|digits_between:2,5',
             'description' => 'required',
+            'stock_status' => 'required|integer',
             'quantity' => 'required',
             'image_1' => 'required',
             'image_2' => 'required',

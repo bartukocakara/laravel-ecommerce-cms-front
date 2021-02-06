@@ -59,6 +59,9 @@ class PaymentController extends Controller
 
         if($accepted)
         {
+            // Ürünleren siparişteki miktarları kadar düş
+
+
             // Admine gider
             // Mail::to('kocakarabartu@gmail.com')->send(new OrderComplete($datas, $products, $city, $district));
             //Müşteriye gider

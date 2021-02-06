@@ -44,10 +44,9 @@
                                     <input type="password" class="form-control" id="password-2" name="password-2" placeholder="Şifreniz tekrar" required data-error="Lütfen şifrelerinizin eşleştiğinden emin olunuz...">
                                     <div class="help-block with-errors"></div>
                                 </div>
-                                <div class="submit-button text-center">
-                                    <button class="btn go-checkout" id="submit" type="submit">Kaydet</button>
-                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                    <div class="clearfix"></div>
+                                <div class="text-center row mx-auto">
+                                    <button class="btn text-white go-checkout mr-3" id="submit" type="submit">Kaydet</button>
+                                    <a class="btn text-white go-checkout mr-3" href="{{ route('front.login') }}">Giriş Yap</a>
                                 </div>
                             </div>
                         </div>

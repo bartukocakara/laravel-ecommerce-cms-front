@@ -1996,7 +1996,8 @@
      min-height: 205px;
 }
  .account-box {
-     border: 2px solid #010101;
+     border-radius: 20px;
+     border: 1px solid #c4c4c4;
      margin-top: 15px;
 }
  .my-account-page a{

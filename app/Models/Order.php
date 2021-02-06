@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Mail\OrderCancel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class Order extends Model
 {
@@ -26,7 +28,6 @@ class Order extends Model
             'city_id' => 'required|string|max:3',
             'district_id' => 'required|string|max:980',
             'zip' => 'required|max:7',
-            'products' => 'required',
             'tax' => 'required',
             'sub_total' => 'required',
             'grand_total' => 'required',
@@ -39,5 +40,23 @@ class Order extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id', 'id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'district_id', 'id');
+    }
+
+    public function orderCanceled(Request $request, $products)
+    {
+        if($request->status == "CANCELED")
+        {
+            Mail::to('kocakarabartu@gmail.com')->send(new OrderCancel($request->except('_token'), $products));
+        }
     }
 }

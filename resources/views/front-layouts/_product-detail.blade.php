@@ -1,5 +1,6 @@
     <!-- Start Shop Detail  -->
     <div class="shop-detail-box-main">
+
         <div class="container">
             <div class="row">
                 <div class="col-xl-5 col-lg-5 col-md-6">
@@ -61,13 +62,13 @@
                                     <div class="cart-and-bay-btn">
                                         <form action="{{ route('front.add-to-cart') }}" method="post">
                                             @csrf
-                                            <input type="hidden" name="products[product_id]" value="{{ $product->id }}" type="text">
-                                            <input type="hidden" name="products[name]" value="{{ $product->name }}" type="text">
-                                            <input type="hidden" name="products[price]" value="{{ $product->price }}" type="text">
-                                            <input type="hidden" name="products[quantity]" value="1" type="text">
-                                            <input type="hidden" name="products[size]" value="{{ $product->size }}" type="text">
-                                            <input type="hidden" name="products[image_1]" value="{{ $product->image_1 }}" type="text">
-                                            <input type="hidden" name="products[product_slug]" value="{{ $product->product_slug }}" type="text">
+                                            <input type="hidden" name="products[product_id]" value="{{ $product->id }}" >
+                                            <input type="hidden" name="products[name]" value="{{ $product->name }}" >
+                                            <input type="hidden" name="products[price]" value="{{ $product->price }}" >
+                                            <input type="hidden" name="products[quantity]" value="1" >
+                                            <input type="hidden" name="products[size]" value="{{ $product->size }}" >
+                                            <input type="hidden" name="products[image_1]" value="{{ $product->image_1 }}" >
+                                            <input type="hidden" name="products[product_slug]" value="{{ $product->product_slug }}" >
                                             <button class="btn @if (session("customer")) go-checkout text-white @else btn-danger" disabled @endif data-fancybox-close="" href="#">Sepete Ekle</button>
                                         </form>
                                     </div>

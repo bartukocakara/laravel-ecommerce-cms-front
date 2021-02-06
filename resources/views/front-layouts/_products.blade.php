@@ -6,10 +6,10 @@
                         <div class="title-all text-center">
                             <h1>Çeşitlendirilmiş Ürünler</h1>
                         </div>
-                        <div class="featured-products-box owl-carousel owl-theme">
-                            @if (isset($products))
+                        @if($products)
+                        <div @if(count($products) < 4 ) class="row" @else class="featured-products-box owl-carousel owl-theme" @endif  >
                             @foreach ($products as $product)
-                            <div class="item">
+                            <div @if (count($products) < 4 ) class="col-md-3" @else class="item" @endif >
                                 <div class="products-single fix">
                                     <div class="box-img-hover">
                                         @if ($product->stock_status == 1)

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewMessageAdmin;
+use App\Mail\NewMessageCustomer;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Customer;
@@ -10,6 +12,7 @@ use App\Models\Product;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -45,22 +48,18 @@ class HomeController extends Controller
         return view('front.contact', compact('message_types'));
     }
 
-    public function sendMessage(Request $request)
+    public function contactSubmit(Request $request, Message $message)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email',
-            'title' => 'required|string|max:50',
-            'content' => 'required|string|max|200',
-        ]);
-    }
-
-    public function contactSubmit(Request $request)
-    {
-        Message::insert(
-            $request->except('_token')
-        );
-        return redirect()->with('status', 'Mesajınız iletildi');
+        $send = Message::create(
+                $request->except('_token')
+            );
+        $types = config('enums.message_types');
+        if($send)
+        {
+            Mail::to('kocakarabartu@gmail.com')->send(new NewMessageCustomer($send));
+            Mail::to('kocakarabartu@gmail.com')->send(new NewMessageAdmin($send, $types));
+            return back()->with('status', 'Mesajınız iletildi');
+        }
     }
 
     public function products()
@@ -73,7 +72,11 @@ class HomeController extends Controller
     {
         $product = Product::where('product_slug', $slug)->first();
         $sizes = config("enums.sizes");
-        return view('front.product-detail', compact('product', 'sizes'));
+        if($product)
+        {
+            return view('front.product-detail', compact('product', 'sizes'));
+        }
+        back();
     }
 
     public function kvkkPage()

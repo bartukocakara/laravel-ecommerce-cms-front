@@ -27,7 +27,7 @@
                     @endphp
                     @foreach ($categories as $category)
                     <li class="dropdown">
-                        <a href="" class="nav-link" data-toggle="dropdown">@if ($category->id == 1) Kadın @else Erkek @endif</a>
+                        <a href="" class="nav-link" data-toggle="dropdown">{{ $category->name }}</a>
                         <ul class="dropdown-menu animated">
                             @foreach ($subCategories as $subCategory)
                                 <li><a href="{{ route('front.category', ['category' => Str::lower($category->name), 'subCategory' => Str::lower($subCategory->name)]) }}">{{ $subCategory->name }}</a></li>

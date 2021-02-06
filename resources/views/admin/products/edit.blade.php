@@ -22,16 +22,26 @@
             <div class="col-md-12">
                 <div class="card pd-20 pd-sm-40">
                     <div class="card-header mb-4">Ürün Düzenle</div>
-                    <div class="body">
-                        @if (session('success'))
+                    @if (session('success'))
                             <div class="alert alert-success alert-dismissable fade show" role="alert">
                             <strong>{{ session('success') }}</strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                        @elseif($errors->any())
+                            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                                @if($errors->any())
+                                    {!! implode('', $errors->all('<div>:message</div>')) !!}
+                                @endif
+                                <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
                         @endif
-                        <form action="{{ route('products.update', $product->id) }}" method="post" role="form">
+                    <div class="body">
+                        <form action="{{ route('products.update', $product->id) }}" method="post" role="form" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                                 <div class="row">
@@ -48,20 +58,20 @@
 
                                     <div class="col-md-6">
                                         <label for="">Kategori : </label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="category_id" id="">
                                             <option value="">---Kategori seçiniz---</option>
                                             @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option @if ($product->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="">Alt kategori : </label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="sub_category_id" id="">
                                             <option value="">---Alt Kategori seçiniz---</option>
                                             @foreach ($subCategories as $subCategory)
-                                            <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
+                                            <option @if ($product->sub_category_id == $subCategory->id) selected @endif value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -71,17 +81,17 @@
                                         <select class="form-control" name="size" id="">
                                             <option value="">---Beden seçiniz---</option>
                                             @foreach ($sizes as $key => $value)
-                                            <option value="{{ $key }}">{{ $value }}</option>
+                                            <option @if ($product->size == $key) selected @endif value="{{ $key }}">{{ $value }}</option>
                                             @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="">Renk : </label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="color" id="">
                                             <option value="">---Renk seçiniz---</option>
                                             @foreach ($colors as $key => $value)
-                                            <option value="{{ $key }}">{{ $value }}</option>
+                                            <option @if ($product->color == $key) selected @endif value="{{ $key }}">{{ $value }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -106,6 +116,17 @@
                                         @error('description')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="">Stok Durumu : </label>
+                                        <select class="form-control" name="stock_status" id="">
+                                            @foreach ($stock_status as $key => $value)
+                                            <option @if ($product->stock_status == $key) selected @endif value="{{ $key }}">{{ $value }}</option>
+                                            @endforeach
+                                        </select>
+                                        <br>
+
                                     </div>
 
                                     <div class="col-md-6">

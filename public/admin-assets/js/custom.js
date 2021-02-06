@@ -54,3 +54,86 @@ $(document).ready(function(){
     });
   });
 
+$(document).ready(function(){
+    $(".w-change").on("change", function() {
+        var confirmChange = confirm("Sipariş durumunu değiştirmek istiyor musunuz?");
+        var url = $(this).parent().find("#urlChangeStatus").val();
+        var id = $(this).parent().find("#idChangeStatus").val();
+        var status = $(this).val();
+        var token = $(this).parent().find("input[name='_token']").val();
+        var email = $(this).parent().find("#email").val();
+        var $t = $(this);
+        if(confirmChange == true)
+        {
+            $.ajax({
+                url : url,
+                method : "POST",
+                data : {
+                    id : id,
+                    status : status,
+                    email : email,
+                    _token : token
+                },
+                dataType : "json",
+                success : function(data){
+                    $.each(data.order_status, function(key, value)
+                    {
+                        if(data.status == key)
+                        {
+                        $t.parent().parent().find('span#newstatus').text(value)
+                        }
+                    });
+                },
+                error: function(error){
+                    console.log(error)
+                }
+                })
+
+        }else{
+            return false;
+        }
+    })
+
+  });
+  $(document).ready(function(){
+    $(".s-change").on("change", function() {
+        var confirmChange = confirm("Ürünün durumunu değiştirmek istiyor musunuz?");
+        var url = $(this).parent().find("#urlChangeProductStatus").val();
+        var id = $(this).parent().find("#idChangeProductStatus").val();
+        var status = $(this).val();
+        var token = $(this).parent().find("input[name='_token']").val();
+        var $t = $(this);
+        if(confirmChange == true)
+        {
+            $.ajax({
+                url : url,
+                method : "POST",
+                data : {
+                    id : id,
+                    status : status,
+                    _token : token
+                },
+                dataType : "json",
+                success : function(data){
+                    $t.parent().parent().find(".quantity").text(data.quantity)
+                    $.each(data.product_status, function(key, value)
+                    {
+                        if(data.stock_status == key)
+                        {
+                        $t.parent().parent().find('span#newstatus').text(value);
+                        }
+                    });
+                },
+                error: function(error){
+                    console.log(error)
+                }
+                })
+
+        }else{
+            return false;
+        }
+    })
+
+
+  });
+

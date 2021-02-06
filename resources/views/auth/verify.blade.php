@@ -4,18 +4,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <br>
             <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+                <div class="card-header m-3 text-center">Email adresimi onayla</div>
 
                 <div class="card-body">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+                            Şifre yenileme linkiniz email adresinize gönderilmiştir.
                         </div>
                     @endif
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
+                    Lütfen email adresinizi kontrol ediniz.
+                    Eğer link alamadıysanız,
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.

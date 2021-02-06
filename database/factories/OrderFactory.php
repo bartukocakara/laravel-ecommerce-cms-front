@@ -32,26 +32,16 @@ class OrderFactory extends Factory
                 'district_id' => $this->faker->numberBetween(1, 950),
                 'zip' => $this->faker->postcode,
                 'products' => "[
-                    {
-                        'product_id' : '".$this->faker->numberBetween()."',
-                        'price' : '".$this->faker->numberBetween(50, 100)."',
-                        'quantity' : '".$this->faker->numberBetween(1, 10)."',
-                        'size' : '".$this->faker->randomElement(['XS', 'S', 'M', 'L', 'XL'])."',
-                    },
-                    {
-                        'product_id' : '".$this->faker->numberBetween()."',
-                        'price' : '".$this->faker->numberBetween(50, 100)."',
-                        'quantity' : '".$this->faker->numberBetween(1, 10)."',
-                        'size' : '".$this->faker->randomElement(['XS', 'S', 'M', 'L', 'XL'])."',
-                    },
-                    {
-                        'product_id' : '".$this->faker->numberBetween()."',
-                        'price' : '".$this->faker->numberBetween(50, 100)."',
-                        'quantity' : '".$this->faker->numberBetween(1, 10)."',
-                        'size' : '".$this->faker->randomElement(['XS', 'S', 'M', 'L', 'XL'])."',
-                    },
-
-                ]",
+                                    {
+                                        'product_id':".$this->faker->numberBetween(1, 100).",
+                                        'name':".$this->faker->name.",
+                                        'price':".$this->faker->numberBetween(20, 50).",
+                                        'quantity':".$this->faker->numberBetween(1, 10).",
+                                        'size':".$this->faker->randomElement(['XS', 'S', 'M', 'L', 'XL']).",
+                                        'image_1':".$this->faker->name.",
+                                        'product_slug':".$this->faker->slug(2, true)."
+                                    }
+                                ]",
                 'tax' => $this->faker->numberBetween(10, 30),
                 'sub_total' => $this->faker->numberBetween(20, 90),
                 'grand_total' => $this->faker->numberBetween(30, 120),
