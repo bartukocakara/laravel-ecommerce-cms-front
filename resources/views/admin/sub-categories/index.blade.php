@@ -82,6 +82,8 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                        @elseif($errors->any())
+                            <h4 class="text-danger"> {{ implode('', $errors->all(':message')) }} </h4>
                         @endif
                         <form action="{{ route('sub-categories.store') }}" method="post" role="form">
                             @csrf

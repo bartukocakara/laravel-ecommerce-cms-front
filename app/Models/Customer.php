@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\CustomerRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Authenticatable;
@@ -17,7 +18,7 @@ class Customer extends Model
 
     protected $table = "customers";
 
-    public function rules(Request $request)
+    public function rules(CustomerRequest $request)
     {
         $request->validate([
             'name' => 'required|string|max:25',

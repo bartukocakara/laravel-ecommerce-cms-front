@@ -51,7 +51,7 @@
                                         <a class="cart_quantity_up" style="cursor: pointer;" value="{{ route('front.increase-quantity') }}"> + </a>
                                     </td>
                                     <td id="total-pr" id="{{ $i }}" value="{{ $i }}">
-                                        {{ $product['price'] * $product['quantity'] }} TRY
+                                        {{ $product['price'] * $product['quantity']." " }} TRY
                                     </td>
                                     <td class="remove-pr">
                                         <form action="{{ route('front.remove-from-cart', $product['product_id']) }}" method="post">
@@ -79,7 +79,7 @@
                         @if (isset($cart))
                         <div class="d-flex gr-total">
                             <h5>Toplam Ücret : </h5>
-                            <div class="ml-auto h5" id="total_price_show"> {{ $cart->total_price }}  TRY</div>
+                            <div class="ml-auto h5" id="total_price_show"> {{ $cart->total_price." " }}  TRY</div>
                             <input type="hidden" value="{{ $cart->total_quantity }}" id="total_quantity">
                             <input type="hidden" value="{{ $cart->total_price }}" id="total_price">
                         </div>

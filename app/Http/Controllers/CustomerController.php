@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerRequest;
 use App\Mail\OrderCancel;
 use App\Mail\OrderCancelRequest;
 use App\Models\Customer;
@@ -63,9 +64,9 @@ class CustomerController extends Controller
         return view('front.profile-detail-info', compact('customer'));
     }
 
-    public function profileUpdate(Request $request)
+    public function profileUpdate(CustomerRequest $request)
     {
-        $this->customer->rules($request);
+        $this->rules($request);
         $update = Customer::where('id', session('customer')['id'])->update($request->except('_token'));
         if($update)
         {

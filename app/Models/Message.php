@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\MessageRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class Message extends Model
 
     protected $table = "messages";
 
-    public function rules(Request $request)
+    public function rules(MessageRequest $request)
     {
         $request->validate([
             'name' => 'required|string',

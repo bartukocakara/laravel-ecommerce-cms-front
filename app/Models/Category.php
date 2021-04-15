@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class Category extends Model
 
     protected $table = "categories";
 
-    public function rules(Request $request)
+    public function rules(CategoryRequest $request)
     {
         $request->validate([
             'name' => 'required|string|max:25',

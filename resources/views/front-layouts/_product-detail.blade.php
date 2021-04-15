@@ -36,14 +36,14 @@
                     @endif
                     </div>
                 </div>
-                <div class="col-xl-7 col-lg-7 col-md-6">
+                <div class="col-xl-7 col-lg-7 col-md-6 border p-4">
                     <div class="single-product-details">
                         <h2>{{ $product->name }}</h2>
                         <h5> {{ $product->price }} TRY</h5>
                             <p>
                                 <h4>Ürün Açıklaması</h4>
                                 <p>{{ $product->description }} </p>
-                                <ul>
+                                <ul class="border">
                                     <li>
                                         <div class="form-group size-st">
                                             <label class="size-label">Beden</label>
@@ -53,7 +53,17 @@
                                     <li>
                                         <div class="form-group quantity-box">
                                             <label class="control-label">Stok Miktarı</label>
-                                            <input class="form-control" value="{{ $product->quantity }}" min="0" max="20" type="number" disabled>
+                                            <input class="form-control border" value="{{ $product->quantity }}" min="0" max="20" type="number" disabled>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-group">
+                                            <label class="control-label">Stok Durumu</label>
+                                            @foreach ($stockStatus as $key => $value)
+                                                @if ($product->stock_status == $key)
+                                                <input type="text" class="form-control border text-light @if($product->stock_status == 1) bg-success @else bg-danger  @endif"  value="{{ $value }}" disabled>
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </li>
                                 </ul>

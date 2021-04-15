@@ -18,7 +18,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-8 col-sm-12">
+                <div class="col-lg-8 col-sm-12 border">
                     <div class="contact-form-right">
                         <h2>Bize ulaşın</h2>
                         <form action="{{ route('front.send-message') }}" method="post">
@@ -26,28 +26,28 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="form-control" for="">İsim : </label>
+                                        <label for="">İsim : </label>
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Adınız" required data-error="Lütfen adınızı yazınız">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="form-control" for="">Soyisim : </label>
+                                        <label for="">Email : </label>
                                         <input type="email" placeholder="Email adresiniz" id="email" class="form-control" name="email" required data-error="Lütfen email adresi yazınız">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="form-control" for="">Başlık : </label>
+                                        <label for="">Başlık : </label>
                                         <input type="text" class="form-control" id="subject" name="title" placeholder="Başlığınız" required data-error="Lütfen başlık yazınız">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="form-control" for="">Mesaj : </label>
+                                        <label for="">Mesaj : </label>
                                         <textarea class="form-control" id="message" placeholder="Mesajınız" name="content" rows="4" data-error="Lütfen mesaj yazınız" required></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>

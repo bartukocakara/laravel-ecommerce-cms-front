@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubCategoryRequest;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -32,12 +33,9 @@ class SubCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
-
+        $this->rules($request);
         SubCategory::insert([
             'name' => $request->name,
         ]);

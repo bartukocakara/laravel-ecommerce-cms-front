@@ -20,23 +20,23 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="firstName">Adınız : *</label>
-                                    <input type="text" class="form-control" id="firstName" name="customer_name" value="{{ old('customer_name') }}" required>
+                                    <input type="text" class="form-control" id="firstName" name="customer_name" value="{{ $customer->name }}" required>
                                     <div class="invalid-feedback"> Lütfen geçerli bir isim yazınız. </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="lastName">Soyadınız :  *</label>
-                                    <input type="text" class="form-control" id="lastName" name="customer_surname" value="{{ old('customer_surname') }}" required>
+                                    <input type="text" class="form-control" id="lastName" name="customer_surname" value="{{ $customer->surname }}" required>
                                     <div class="invalid-feedback"> Lütfen geçerli soyisim yazınız. </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="email">Email Adresiniz : *</label>
-                                <input type="email" class="form-control" id="email" name="customer_email">
+                                <input type="email" class="form-control" id="email" value="{{ $customer->email }}" name="customer_email">
                                 <div class="invalid-feedback"> Lütfen geçerli email adresi yazınız. </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address">Adresiniz :  *</label>
-                                <input type="text" class="form-control" id="address" name="address" required>
+                                <textarea name="address" class="form-control" id="address" cols="30" rows="5">{{ $customer->address }}</textarea>
                                 <div class="invalid-feedback"> Lütfen adresinizi yazınız. </div>
                             </div>
                             <div class="row">
@@ -69,8 +69,14 @@
                                 <label class="custom-control-label" for="same-address">Gönderim adresim fatura adresiyle aynı olacak.</label>
                             </div>
                             <hr class="mb-4">
-                            <div class="title"> <span>Ödeme : </span> </div>
+                            <div class="title"> <span>Ödeme Türü : *</span> </div>
+                            <label for="">Geçici olarak sadece havale türü ile ödeme alıyoruz</label>
+
                             <div class="d-block my-3">
+                                <input type="checkbox" name="payment_type" value="HAVALE" disabled checked>
+                                <label for="">Havale</label>
+                            </div>
+                            {{-- <div class="d-block my-3">
                                 <fieldset id="payment">
                                 @foreach ($payment_types as $key => $value)
                                     <div class="custom-radio">
@@ -79,7 +85,7 @@
                                     </div>
                                 @endforeach
                                 </fieldset>
-                            </div>
+                            </div> --}}
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="cc-name">Ticari Hesabımız : </label>
@@ -90,7 +96,7 @@
                                     <label class="form-control" for="">TR09 0011 1000 0000 0098 6323 71</label>
                                 </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <div class="payment-icon">
                                         <ul>
@@ -101,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr class="mb-1">
+                            <hr class="mb-1"> --}}
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
@@ -112,16 +118,22 @@
                                     <h3>Gönderim günü</h3>
                                 </div>
                                 <div class="mb-4">
-                                    <fieldset id="delivery">
+                                    <label for="">Minimum 7 gün - Maksimum 14 gün</label>
+                                    <input type="hidden" name="delivery_time" value="3-7_DAY">
+                                    {{-- <fieldset id="delivery">
                                     @foreach ($delivery_times as $key => $value)
                                         <div>
                                             <input id="shippingOption1" name="delivery_time" value="{{ $key }}" type="radio" required>
                                             <label for="shippingOption1">{{ $value }}</label> <span class="float-right font-weight-bold">x TRY</span>
                                         </div>
                                     @endforeach
-                                    </fieldset>
+                                    </fieldset> --}}
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <label for="">Notunuz : </label>
+                            <textarea class="form-control" name="note" id="" cols="30" rows="5"></textarea><br>
                         </div>
                         <div class="col-md-12 col-lg-12">
                             <div class="odr-box">
@@ -165,7 +177,7 @@
                                 <div class="d-flex gr-total">
                                     <h5>Kargo ücreti</h5>
                                     <div class="ml-auto h5"> +5 TRY</div>
-                                    <input type="hidden" name="sub_total" value="{{ $checkout->total_price }}">
+                                    <input type="hidden" name="sub_total" value="{{ $check->total_price }}">
                                 </div>
                                 <hr>
                                 <div class="d-flex gr-total">
@@ -176,14 +188,14 @@
                                 <hr>
                                 <div class="d-flex gr-total">
                                     <h5>Net Ücret</h5>
-                                    <div class="ml-auto h5"> + {{ $checkout->total_price }} TRY</div>
+                                    <div class="ml-auto h5"> + {{ $check->total_price }} TRY</div>
                                 </div>
                                 <hr>
 
                                 <div class="d-flex gr-total">
                                     <h5>Brüt Ücret</h5>
-                                    <div class="ml-auto h5"> {{ $checkout->total_price + 5 }} TRY</div>
-                                    <input type="hidden" name="grand_total" value="{{ $checkout->total_price + 5 + 0 }}">
+                                    <div class="ml-auto h5"> {{ $check->total_price + 5 }} TRY</div>
+                                    <input type="hidden" name="grand_total" value="{{ $check->total_price + 5 + 0 }}">
                                 </div>
                                 <hr>
 

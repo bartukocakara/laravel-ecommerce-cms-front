@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontAuth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,7 @@ class FrontRegisterController extends Controller
         return view('front-auth.register');
     }
 
-    public function registerPost(Request $request)
+    public function registerPost(CustomerRequest $request)
     {
         $request->validate([
             'name' => 'required|string',

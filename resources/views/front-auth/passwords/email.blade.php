@@ -8,16 +8,24 @@
                 <div class="contact-form-right">
                     <h2>Şifremi Unuttum</h2>
                     @if($errors->any())
-                        <div class="alert alert-warning alert-dismissable fade show" role="alert">
-                        <strong>{{ implode('', $errors->all(':message')) }}</strong>
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                        <strong>{{ $error }}</strong>
                             <button type="button" class="close" data-dismiss="alert" aria-label="close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                    @endif
+                    @endforeach
                     @if(session('error'))
                         <div class="alert alert-warning alert-dismissable fade show" role="alert">
                         <strong>{{ session('error') }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @elseif(session('send-link'))
+                        <div class="alert alert-success alert-dismissable fade show" role="alert">
+                        <strong>{{ session('send-link') }}</strong>
                             <button type="button" class="close" data-dismiss="alert" aria-label="close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

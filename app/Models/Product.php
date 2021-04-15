@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,7 @@ class Product extends Model
 
     protected $table = "products";
 
-    public function rules(Request $request)
+    public function rules(ProductRequest $request)
     {
         $request->validate([
             'name' => 'required|string|max:30|min:8',

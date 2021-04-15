@@ -52,9 +52,6 @@ class OrderFactory extends Factory
                 'delivery_time' => $this->faker->randomElement(['1_DAY', '2-4_DAY', '3-7_DAY']),
                 'payment_type' => $this->faker->randomElement(['HAVALE', 'EFT', 'CREDIT_CARD']),
                 'status' => $this->faker->randomElement(['PENDING', 'COMPLETED', 'DECLINED', 'ON_DELIVERY']),
-                'card_number' => $this->faker->creditCardNumber,
-                'card_expiration' => $this->faker->creditCardExpirationDate,
-                'card_cvv' => $this->faker->numberBetween(100, 600),
                 'accept_contract' => $this->faker->randomElement(["NO", "YES"]),
         ];
     }

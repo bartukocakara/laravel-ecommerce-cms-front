@@ -23,7 +23,7 @@
                         <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Aylık Satışlar</h6>
                             </div><!-- card-header -->
                         <div class="d-flex align-items-center justify-content-between">
-                        <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ $monthlyOrders }} TRY</h3>
+                        <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ number_format($monthlyOrders, 2) }} TRY</h3>
                         </div><!-- card-body -->
                         <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
                 </div><!-- -->
@@ -35,7 +35,7 @@
                     <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Yıllık Satışlar</h6>
                 </div><!-- card-header -->
                 <div class="d-flex align-items-center justify-content-between">
-                        <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ $yearlyOrders }} TRY</h3>
+                        <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ number_format($yearlyOrders, 2) }} TRY</h3>
                 </div><!-- card-body -->
                 <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
                     <div>
@@ -49,7 +49,7 @@
                     <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">İptal Olan Siparişler</h6>
                 </div><!-- card-header -->
                 <div class="d-flex align-items-center justify-content-between">
-                        <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ $canceledOrders }} TRY</h3>
+                        <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ number_format($canceledOrders, 2) }} TRY</h3>
                 </div><!-- card-body -->
                 <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
                     <div>

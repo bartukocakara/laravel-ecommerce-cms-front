@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
@@ -73,9 +74,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $this->products->rules($request);
+        $this->rules($request);
 
         $datas = $request->except('_token');
         $datas['product_slug'] = Str::slug($request->name);

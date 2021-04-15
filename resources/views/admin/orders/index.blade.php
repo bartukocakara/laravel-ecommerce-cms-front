@@ -57,7 +57,7 @@
                                 <td>{{ $order->order_code }}</td>
                                 <td>{{ $order->customer->name }}</td>
                                 <td>{{ $order->city->name }}</td>
-                                <td>{{ $order->sub_total }} TRY</td>
+                                <td>{{ number_format($order->grand_total, 2) }} TRY</td>
                                 <td id="orderStatus {{ $i++ }}">
 
                                     @foreach ($order_status as $key => $value)

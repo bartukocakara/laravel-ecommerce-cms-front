@@ -6,6 +6,7 @@ use App\Mail\OrderComplete;
 use App\Mail\OrderDetail;
 use App\Models\Cart;
 use App\Models\City;
+use App\Models\Customer;
 use App\Models\District;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -23,18 +24,19 @@ class PaymentController extends Controller
     }
     public function checkout()
     {
-        $checkout = Cart::where('customer_id', session('customer')['id'])->first();
+        $check = Cart::where('customer_id', session('customer')['id'])->first();
         $cities = City::all();
         $products = [];
-        if($checkout)
+        $customer = Customer::where('id', session('customer')['id'])->first();
+        if($check)
         {
-            $productsInCart = json_decode($checkout->products, true);
+            $productsInCart = json_decode($check->products, true);
             $products = $productsInCart;
         }
         $payment_types = config('enums.payment_types');
         $order_status = config('enums.order_status');
         $delivery_times = config('enums.delivery_times');
-        return view('front.checkout', compact('checkout', 'cities', 'products', 'payment_types', 'order_status', 'delivery_times'));
+        return view('front.checkout', compact('check', 'cities', 'products', 'payment_types', 'order_status', 'delivery_times', 'customer'));
     }
 
     public function getDistrict(Request $request)
@@ -46,8 +48,10 @@ class PaymentController extends Controller
 
     public function completeOrder(Request $request)
     {
-        $this->orders->rules($request);
+        $this->rules($request);
         $datas = $request->except('_token');
+        $datas['grand_total'] = number_format($request->grand_total, 2);
+        $datas['sub_total'] = number_format($request->sub_total, 2);
         $products = $request->products;
         $datas['products'] = json_encode($products);
         $datas['order_code'] = mt_rand(100000, 999999);

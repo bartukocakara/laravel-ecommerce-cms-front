@@ -20,9 +20,9 @@ $("a.cart_quantity_down").on('click', function(e){
             },
             dataType : "json",
             success : function(data){
-                $t.parent().parent().find('td#total-pr').text(data.quantity*data.price+"TRY");
+                $t.parent().parent().find('td#total-pr').text(data.quantity*data.price+" TRY");
                 $t.parent().parent().find('input#quantity').val(data.quantity);
-                $("#total_price_show").text(data.total_price+"TRY");
+                $("#total_price_show").text(data.total_price+" TRY");
             },
             error : function(error){
                 console.log(error);
@@ -51,9 +51,9 @@ $(".cart_quantity_up").on('click', function(e){
             },
             dataType : "json",
             success : function(data){
-                $t.parent().parent().find('td#total-pr').text(data.quantity*data.price+"TRY");
+                $t.parent().parent().find('td#total-pr').text(data.quantity*data.price+" TRY");
                 $t.parent().parent().find('input#quantity').val(data.quantity);
-                $("#total_price_show").text(data.total_price+"TRY");
+                $("#total_price_show").text(data.total_price+" TRY");
             },
             error : function(error){
                 console.log(error);

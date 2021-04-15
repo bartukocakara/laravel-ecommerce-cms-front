@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\OrderRequest;
 use App\Mail\OrderCancel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,11 +15,11 @@ class Order extends Model
 
     protected $fillable = ['customer_id', 'customer_name', 'customer_surname', 'customer_email', 'address', 'city_id',
                             'district_id', 'zip', 'products', 'tax', 'sub_total', 'grand_total', 'total_quantity', 'shipping_cost',
-                            'note', 'shipping_company', 'delivery_time',  'payment_type', 'status', 'card_number', 'card_expiration', 'card_cvv', 'accept_contract'];
+                            'note', 'shipping_company', 'delivery_time',  'payment_type', 'status', 'accept_contract'];
 
     protected $table = "orders";
 
-    public function rules(Request $request)
+    public function rules(OrderRequest $request)
     {
         $request->validate([
             'customer_name' => 'required|string|max:25',

@@ -2,13 +2,22 @@
     <div class="contact-box-main">
         <div class="container">
             @if (isset($success))
-                    <div class="alert alert-success alert-dismissable fade show" role="alert">
-                    <strong>{{ $success }}</strong>
+                <div class="alert alert-success alert-dismissable fade show" role="alert">
+                <strong>{{ $success }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @elseif($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                    <strong>{{ $error }}</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    @endif
+                @endforeach
+            @endif
             <div class="row">
                 <div class="col-lg-8 col-sm-12">
                     <div class="contact-form-right">

@@ -20,14 +20,14 @@
 
       <div class="card pd-20 pd-sm-40">
         @if($errors->any())
-            <div class="alert alert-danger alert-dismissable fade show" role="alert">
-                @if($errors->any())
-                    {!! implode('', $errors->all('<div>:message</div>')) !!}
-                @endif
-                <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                <strong>{{ $error }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endforeach
         @endif
         <div class="form-layout">
             <form action="{{ route('products.store') }}" method="post" role="form" enctype="multipart/form-data">

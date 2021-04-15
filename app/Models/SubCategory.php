@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\SubCategoryRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class SubCategory extends Model
 
     protected $table = "sub_categories";
 
-    public function rules(Request $request)
+    public function rules(SubCategoryRequest $request)
     {
         $request->validate([
             'name' => 'required|string|max:25',

@@ -30,8 +30,8 @@ Route::namespace('Admin')->middleware(['admin'])->group(function () {
 });
 
 //Session işlemleri
-Route::get('/giriş-yap', 'FrontAuth\FrontLoginController@login')->name('front.login');
-Route::post('/giriş-yap', 'FrontAuth\FrontLoginController@loginSubmit')->name('front.login-submit');
+Route::get('/giris-yap', 'FrontAuth\FrontLoginController@login')->name('front.login');
+Route::post('/giris-yap', 'FrontAuth\FrontLoginController@loginSubmit')->name('front.login-submit');
 Route::get('/kayıt-ol', 'FrontAuth\FrontRegisterController@register')->name('front.register');
 Route::post('/kayıt-ol', 'FrontAuth\FrontRegisterController@registerPost')->name('front.register-submit');
 Route::get('/sifremi-unuttum', 'FrontAuth\FrontForgotPasswordContoller@forgotPassword')->name('front.forgot-password');

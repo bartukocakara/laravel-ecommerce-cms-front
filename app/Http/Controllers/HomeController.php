@@ -20,7 +20,8 @@ class HomeController extends Controller
     {
         $products = Product::all();
         $categories = Category::all();
-        return view('front.index', compact('products', 'categories'));
+        $stockStatus = config('enums.stock_status');
+        return view('front.index', compact('products', 'categories', 'stockStatus'));
     }
 
     public function categoryPage($category, $subCategory)
@@ -65,16 +66,18 @@ class HomeController extends Controller
     public function products()
     {
         $products= Product::all();
-        return view('front.products', compact($products));
+        $stockStatus = config('enums.stock_status');
+        return view('front.products', compact('products', 'stockStatus'));
     }
 
     public function productDetail($slug)
     {
         $product = Product::where('product_slug', $slug)->first();
         $sizes = config("enums.sizes");
+        $stockStatus = config('enums.stock_status');
         if($product)
         {
-            return view('front.product-detail', compact('product', 'sizes'));
+            return view('front.product-detail', compact('product', 'sizes', 'stockStatus'));
         }
         back();
     }

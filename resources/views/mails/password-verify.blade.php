@@ -1,14 +1,6 @@
-{{-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
-<!--[if gte mso 9]>
-<xml>
-  <o:OfficeDocumentSettings>
-    <o:AllowPNG/>
-    <o:PixelsPerInch>96</o:PixelsPerInch>
-  </o:OfficeDocumentSettings>
-</xml>
-<![endif]-->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="x-apple-disable-message-reformatting">
@@ -155,7 +147,7 @@ a[x-apple-data-detectors='true'] {
                     <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 80px;font-family:arial,helvetica,sans-serif;" align="left">
 
                 <div class="v-color v-text-align v-line-height" style="color: #000000; line-height: 140%; text-align: left; word-wrap: break-word;">
-                    <h3 style="text-align: center;"><span style="color: #ffffff;">Sayın  mesajınız  iletilmiştir. Yetkili personelimiz size kısa sürede dönüş sağlayacaktır. </span></h3>
+                    <h3 style="text-align: center;"><span style="color: #ffffff;">Şifre yenilemek için linke tıklayınız </span></h3>
                 </div>
 
                     </td>
@@ -201,7 +193,7 @@ a[x-apple-data-detectors='true'] {
                 <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:30px 10px;font-family:arial,helvetica,sans-serif;" align="left">
 
                     <div class="v-color v-text-align v-line-height" style="color: #000000; line-height: 140%; text-align: left; word-wrap: break-word;">
-                        <p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="color: #444444; font-size: 14px; line-height: 19.6px;"><strong><span style="font-size: 18px; line-height: 25.2px;">Mesaj Başlığınız : </span></strong><br> <strong><span style="font-size: 18px; line-height: 25.2px;"></span></strong></span></p>
+                        <p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="color: #444444; font-size: 14px; line-height: 19.6px;"><strong><span style="font-size: 18px; line-height: 25.2px;">Linkiniz : </span></strong><br> <a href="{{ url('/sifremi-yenile/'.$token) }}">Tıklayınız</a> <strong><span style="font-size: 18px; line-height: 25.2px;"></span></strong></span></p>
                     </div>
 
                   </td>
@@ -209,71 +201,11 @@ a[x-apple-data-detectors='true'] {
             </tbody>
         </table>
 
-        <table id="u_content_text_5" class="u_content_text" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-            <tbody>
-                <tr>
-                    <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:30px 10px;font-family:arial,helvetica,sans-serif;" align="left">
 
-                        <div class="v-color v-text-align v-line-height" style="color: #000000; line-height: 140%; text-align: left; word-wrap: break-word;">
-                        <p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="color: #444444; font-size: 14px; line-height: 19.6px;"><strong><span style="font-size: 18px; line-height: 25.2px;">Mesaj İçeriğiniz : </span></strong> <br> <strong><span style="font-size: 18px; line-height: 25.2px;"></span></strong>  </span></p>
-                        </div>
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table id="u_content_text_5" class="u_content_text" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-            <tbody>
-                <tr>
-                    <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:30px 10px;font-family:arial,helvetica,sans-serif;" align="left">
-
-                        <div class="v-color v-text-align v-line-height" style="color: #000000; line-height: 140%; text-align: left; word-wrap: break-word;">
-                        <p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="color: #444444; font-size: 14px; line-height: 19.6px;"><strong><span style="font-size: 18px; line-height: 25.2px;">Mesaj Türü : </span></strong> <br> <strong><span style="font-size: 18px; line-height: 25.2px;"></span></strong>  </span></p>
-                        </div>
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
             <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
             </div>
         </div>
         </div>
-  </div>
-</div>
-
-
-
-<div id="u_row_6" class="u-row-container v-row-padding--vertical v-row-background-image--outer v-row-background-color" style="padding: 0px;background-color: transparent">
-  <div class="u-row v-row-columns-background-color-background-color" style="Margin: 0 auto;min-width: 320px;max-width: 640px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
-    <div class="v-row-background-image--inner" style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-            <div id="u_column_8" class="u-col u-col-100" style="max-width: 320px;min-width: 640px;display: table-cell;vertical-align: top;">
-            <div class="v-col-background-color" style="width: 100% !important;">
-            <!--[if (!mso)&(!IE)]><!--><div class="v-col-padding v-col-border" style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
-
-            <table id="u_content_button_1" class="u_content_button" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-            <tbody>
-                <tr>
-                <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:15px 10px 25px;font-family:arial,helvetica,sans-serif;" align="left">
-
-                    <div class="v-text-align" align="center">
-                    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:arial,helvetica,sans-serif;"><tr><td class="v-text-align v-button-colors" style="font-family:arial,helvetica,sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="#" style="height:41px; v-text-anchor:middle; width:212px;" arcsize="10%" stroke="f" fillcolor="#f53027"><w:anchorlock/><center style="color:#FFFFFF;font-family:arial,helvetica,sans-serif;"><![endif]-->
-                        <a href="{{ route('front.home') }}" target="_blank" class="v-size-width v-button-colors v-border v-border-radius" style="box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #022459; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
-                        <span class="v-line-height v-padding" style="display:block;padding:10px 20px;line-height:120%;"><strong><span style="font-size: 18px; line-height: 21.6px;">Web sayfamızı inceleyin</span></strong></span>
-                        </a>
-                    <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
-                    </div>
-
-                </td>
-                </tr>
-            </tbody>
-            </table>
-
-        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
-        </div>
-        </div>
-    </div>
   </div>
 </div>
 
@@ -305,7 +237,7 @@ a[x-apple-data-detectors='true'] {
   <!--[if IE]></div><![endif]-->
 </body>
 
-</html> --}}
+{{-- </html>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -317,9 +249,9 @@ a[x-apple-data-detectors='true'] {
                            {{ __('A fresh verification link has been sent to your email address.') }}
                        </div>
                    @endif
-                   <a href="{{ url('/sifremi-yenile/'.$token) }}">Tıklayınız</a>
+
                </div>
            </div>
        </div>
    </div>
-</div>
+</div> --}}

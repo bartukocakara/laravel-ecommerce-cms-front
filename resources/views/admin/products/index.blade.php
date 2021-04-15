@@ -66,7 +66,7 @@
                                 <td>{{ $i++ }}</td>
                                 <td><img src="{{ asset('storage/product-images/'.$product->image_1) }}" width="100" alt=""></td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->price }} TRY</td>
+                                <td>{{ number_format($product->price,2) }} TRY</td>
                                 <td class="quantity">{{ $product->quantity }}</td>
                                 <td id="stockStatus {{ $i++ }}">
 

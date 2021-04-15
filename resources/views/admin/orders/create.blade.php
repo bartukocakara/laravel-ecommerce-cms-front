@@ -27,7 +27,7 @@
                                     </button>
                                 </div>
                             @endif
-                            @if($errors->any())
+                            @elseif($errors->any())
 
                             <h4 class="text-danger"> {{ implode('', $errors->all(':message')) }} </h4>
                             @endif

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontAuth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use Carbon\Carbon;
 use Dotenv\Validator;
@@ -19,7 +20,7 @@ class FrontForgotPasswordContoller extends Controller
         return view('front-auth.passwords.email');
     }
 
-    public function submitForgot(Request $request)
+    public function submitForgot(CustomerRequest $request)
     {
         $request->validate([
             'email' => 'required|email|exists:customers'
@@ -38,6 +39,6 @@ class FrontForgotPasswordContoller extends Controller
             $message->subject('Şifre yenileme mesajı');
         });
 
-        return back()->with('message', 'Şifre yenileme linkiniz email adresinize gönderilmiştir.');
+        return back()->with('send-link', 'Şifre yenileme linkiniz email adresinize gönderilmiştir.');
     }
 }
